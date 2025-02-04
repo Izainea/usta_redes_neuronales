@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadística I: Presentación y Syllabus</title>
+  <style>
+    /* Estilos institucionales actualizados */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(rgba(22, 0, 60, 0.8), rgba(22, 0, 60, 0.8));
+      color: #fafafa;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    nav {
+      background-color: #16003c;
+      padding: 10px 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fafafa;
+      font-weight: bold;
+    }
+    section {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #aaa;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #16003c;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #100032;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Estadística I</h1>
+    <h2>Descriptiva e Introducción a la Probabilidad</h2>
+    <p>Primera Clase - Presentación Didáctica</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#introduccion">Introducción</a></li>
+      <li><a href="#descriptiva">Estadística Descriptiva</a></li>
+      <li><a href="#probabilidad">Probabilidad</a></li>
+      <li><a href="#simulacion">Simulación</a></li>
+      <li><a href="#syllabus">Syllabus</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Sección de Introducción -->
+    <section id="introduccion">
+      <h2>Introducción</h2>
+      <p>
+        La estadística es una herramienta fundamental para analizar y comprender la información en diversos campos. En esta primera clase, abordaremos dos áreas clave:
+      </p>
+      <ul>
+        <li><strong>Estadística Descriptiva:</strong> Se encarga de recopilar, resumir y presentar datos de forma comprensible.</li>
+        <li><strong>Introducción a la Probabilidad:</strong> Nos ayuda a entender y modelar la incertidumbre en fenómenos aleatorios.</li>
+      </ul>
+      <p>
+        Además, para motivar el aprendizaje, exploraremos una simulación de datos sociodemográficos de Colombia, lo cual nos permitirá aplicar estos conceptos en un contexto real y cercano.
+      </p>
+    </section>
+
+    <!-- Sección de Estadística Descriptiva -->
+    <section id="descriptiva">
+      <h2>Estadística Descriptiva</h2>
+      <p>
+        La estadística descriptiva se ocupa de resumir y organizar los datos. Algunos conceptos fundamentales son:
+      </p>
+      <ul>
+        <li><strong>Media:</strong> El promedio de los datos.</li>
+        <li><strong>Mediana:</strong> El valor central que divide la distribución en dos partes iguales.</li>
+        <li><strong>Moda:</strong> El valor que aparece con mayor frecuencia.</li>
+        <li><strong>Varianza y Desviación Estándar:</strong> Miden la dispersión o variabilidad de los datos respecto a la media.</li>
+      </ul>
+      <p>
+        Estas medidas nos permiten obtener una visión general del comportamiento y la tendencia central de la información recolectada.
+      </p>
+    </section>
+
+    <!-- Sección de Introducción a la Probabilidad -->
+    <section id="probabilidad">
+      <h2>Introducción a la Probabilidad</h2>
+      <p>
+        La probabilidad es la rama de las matemáticas que estudia los fenómenos aleatorios y la incertidumbre. Con ella, podemos:
+      </p>
+      <ul>
+        <li><strong>Definir Eventos:</strong> Resultados o conjuntos de resultados posibles de un experimento.</li>
+        <li><strong>Espacio Muestral:</strong> Conjunto de todos los resultados posibles.</li>
+        <li><strong>Calcular la Probabilidad:</strong> Asignar un valor numérico (entre 0 y 1) que indica la posibilidad de ocurrencia de un evento.</li>
+      </ul>
+      <p>
+        Estos conceptos son esenciales para modelar y predecir comportamientos en contextos inciertos.
+      </p>
+    </section>
+
+    <!-- Sección de Simulación de Datos -->
+    <section id="simulacion">
+      <h2>Simulación de Datos Sociodemográficos de Colombia</h2>
+      <p>
+        A continuación, se presenta una simulación interactiva de datos sociodemográficos, en la que se generan aleatoriamente:
+      </p>
+      <ul>
+        <li>Departamento (ej. Antioquia, Cundinamarca, etc.)</li>
+        <li>Edad (entre 18 y 99 años)</li>
+        <li>Género (Masculino, Femenino, Otro)</li>
+      </ul>
+      <p>
+        Esta simulación nos ayudará a visualizar cómo se distribuyen los datos y a aplicar conceptos de estadística descriptiva y probabilidad.
+      </p>
+      <button onclick="generarDatos()">Generar Datos Simulados</button>
+      <div id="tablaDatos"></div>
+    </section>
+
+    <!-- Sección de Syllabus -->
+    <section id="syllabus">
+      <h2>Syllabus del Curso</h2>
+      
+      <div class="syllabus-item">
+        <h3>Identificación</h3>
+        <p><strong>Código:</strong> EA-N-F-004 &nbsp;&nbsp; <strong>Versión:</strong> 03 &nbsp;&nbsp; <strong>Emisión:</strong> 21-04-2023</p>
+        <p><strong>Seccional/Sede:</strong> Principal</p>
+        <p><strong>División:</strong> División de Ciencias Económicas y Administrativas</p>
+        <p><strong>Facultad/Departamento/Instituto/Unidad Académica:</strong> Ciencias económicas y administrativas</p>
+        <p><strong>Programa Académico:</strong> Pregrado en Contaduría, Negocios Internacionales, Mercadeo y Economía</p>
+        <p><strong>Modalidad:</strong> Presencial</p>
+        <p><strong>Nombre del Espacio Académico:</strong> Estadística I</p>
+        <p><strong>Nivel de Formación:</strong> Pregrado - Profesional</p>
+        <p><strong>Naturaleza del Espacio Académico:</strong> Teórico - Práctico</p>
+        <p><strong>Número de Créditos:</strong> 3</p>
+        <p>
+          <strong>Distribución Horas/Período Académico:</strong>
+          Trabajo Autónomo: 80 horas &nbsp;&nbsp; Trabajo Acompañado: 64 horas &nbsp;&nbsp; Total: 144 horas
+        </p>
+        <p><strong>Nombre del Profesor:</strong> [Nombre del Profesor]</p>
+        <p><strong>Correo electrónico:</strong> [Correo electrónico]</p>
+        <p><strong>Fecha de actualización:</strong> 7/2/2023 &nbsp;&nbsp; <strong>Versión:</strong> 3</p>
+      </div>
+
+      <div class="syllabus-item">
+        <h3>Propósito del Espacio Académico</h3>
+        <p>
+          La estadística descriptiva corresponde a la primera parte importante de este curso, pues brinda al estudiante métodos y herramientas para describir, resumir y representar la información contenida en un conjunto de datos. En la era de la información, estas habilidades resultan esenciales para el desempeño profesional, ya que permiten interpretar y analizar datos de manera efectiva. Además, se introduce la teoría de probabilidades como herramienta para comprender fenómenos estocásticos y para apoyar la toma de decisiones basadas en proyecciones futuras.
+        </p>
+      </div>
+
+      <div class="syllabus-item">
+        <h3>Núcleo Problemático y Líneas de Investigación</h3>
+        <p>
+          El espacio académico de Estadística I contribuye a resolver problemas en:
+        </p>
+        <ul>
+          <li>Estadística aplicada a las finanzas y la evaluación de riesgos.</li>
+          <li>Modelamiento estadístico en la economía y las organizaciones.</li>
+          <li>Estadística para el estudio de poblaciones y la investigación de mercados.</li>
+        </ul>
+        <p>
+          Asimismo, aporta a las siguientes líneas de investigación:
+        </p>
+        <ol>
+          <li>Modelamiento estadístico para variables econométricas.</li>
+          <li>Riesgo financiero y aplicaciones en actuaría.</li>
+          <li>Aplicaciones de la estadística en contextos interdisciplinarios.</li>
+        </ol>
+      </div>
+
+      <div class="syllabus-item">
+        <h3>Estrategias Didácticas</h3>
+        <p>El curso se desarrollará mediante las siguientes estrategias:</p>
+        <ul>
+          <li>Aprendizaje colaborativo.</li>
+          <li>Aprendizaje basado en estudio de casos.</li>
+          <li>Aprendizaje basado en problemas.</li>
+          <li>Clases magistrales que combinan teoría y práctica.</li>
+          <li>Talleres en el aula y fuera de ella utilizando herramientas como Excel y R.</li>
+        </ul>
+      </div>
+
+      <div class="syllabus-item">
+        <h3>Competencias, Resultados de Aprendizaje y Evaluación</h3>
+        <p>
+          <strong>Competencia General:</strong> Emplear métodos de gestión de datos que apoyen el proceso de toma de decisiones.
+        </p>
+        <p>
+          <strong>Resultados de Aprendizaje (ejemplos):</strong>
+        </p>
+        <ul>
+          <li>Resumir conjuntos de datos mediante medidas numéricas (tendencia central, dispersión, forma) y gráficos (barras, histogramas, pastel, boxplot).</li>
+          <li>Interpretar y comunicar resultados estadísticos a un público interdisciplinario.</li>
+          <li>Aplicar conceptos de probabilidad para analizar fenómenos estocásticos y seleccionar modelos adecuados.</li>
+          <li>Construir y analizar modelos de regresión lineal para explicar y pronosticar variables de interés.</li>
+        </ul>
+        <p>
+          <strong>Mecanismos de Evaluación:</strong> Participación en clase, mesas redondas, talleres teóricos y prácticos, exámenes parciales y finales.
+        </p>
+        <p>
+          <strong>Recursos Didácticos:</strong> Libros de texto (por ejemplo, <em>Anderson, Sweeney, Williams. Estadística para Administración y Economía, 10ª ed.</em>), software (Excel y R), guías y talleres específicos.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Universidad/Institución - Estadística I</p>
+    <p>&copy; 2025</p>
+  </footer>
+
+  <script>
+    // Función para generar datos sociodemográficos simulados
+    function generarDatos() {
+      const departamentos = ["Antioquia", "Cundinamarca", "Valle del Cauca", "Santander", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Risaralda", "Nariño"];
+      const generos = ["Masculino", "Femenino", "Otro"];
+      const numDatos = 10; // Número de registros simulados
+
+      let html = '<table>';
+      html += '<tr><th>#</th><th>Departamento</th><th>Edad</th><th>Género</th></tr>';
+
+      for (let i = 0; i < numDatos; i++) {
+        const depto = departamentos[Math.floor(Math.random() * departamentos.length)];
+        const edad = Math.floor(Math.random() * 82) + 18; // Edad entre 18 y 99
+        const genero = generos[Math.floor(Math.random() * generos.length)];
+        html += `<tr>
+                  <td>${i + 1}</td>
+                  <td>${depto}</td>
+                  <td>${edad}</td>
+                  <td>${genero}</td>
+                </tr>`;
+      }
+
+      html += '</table>';
+      document.getElementById('tablaDatos').innerHTML = html;
+    }
+  </script>
+</body>
+</html>
