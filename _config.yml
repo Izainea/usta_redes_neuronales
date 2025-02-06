@@ -22,7 +22,7 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/Izainea/estadistica  # Online location of your book
-  branch: cuadernos  # Which branch of the repository should be used when creating links (optional)
+  branch: main  # Which branch of the repository should be used when creating links (optional)
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
