@@ -1,0 +1,4578 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introducción al Perceptrón &#8212; Estadística 1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'redes_neuronales_1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introducción al Curso de Redes Neuronales Profundas" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Estadística 1 - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Estadística 1 - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducción al Curso de Redes Neuronales Profundas
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción al Perceptrón</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Izainea/usta_redes_neuronales/main?urlpath=tree/redes_neuronales_1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/Izainea/usta_redes_neuronales&urlpath=tree/usta_redes_neuronales/redes_neuronales_1.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/Izainea/usta_redes_neuronales/blob/main/redes_neuronales_1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/usta_redes_neuronales" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/usta_redes_neuronales/issues/new?title=Issue%20on%20page%20%2Fredes_neuronales_1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/redes_neuronales_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción al Perceptrón</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planteamiento-del-problema">Planteamiento del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-perceptron">¿Qué es un perceptrón?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ahora-sin-trampa-como-logramos-esos-pesos-deseados">Ahora sin trampa, como logramos esos pesos deseados</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-perceptron">
+<h1>Introducción al Perceptrón<a class="headerlink" href="#introduccion-al-perceptron" title="Link to this heading">#</a></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Planteamiento-del-problema" data-toc-modified-id="Planteamiento-del-problema-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Planteamiento del problema</a></span></li><li><span><a href="#¿Qué-es-un-perceptrón?" data-toc-modified-id="¿Qué-es-un-perceptrón?-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>¿Qué es un perceptrón?</a></span></li><li><span><a href="#Ahora-sin-trampa,-como-logramos-esos-pesos-deseados" data-toc-modified-id="Ahora-sin-trampa,-como-logramos-esos-pesos-deseados-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Ahora sin trampa, como logramos esos pesos deseados</a></span></li></ul></div><section id="planteamiento-del-problema">
+<h2>Planteamiento del problema<a class="headerlink" href="#planteamiento-del-problema" title="Link to this heading">#</a></h2>
+<p><em>Dinero, juventud o tiempo.</em></p>
+<p>Un problema bastante interesante nos lleva a preguntarnos si preferiamos Juventud, tiempo o dinero. Evidentemete, en los juegos de niños y adolecentes escogemos una de las tres opciones. Vamos a hacerlo más complejo y permitiremos que uno pueda decidir en varios casos. En la tabla siguiente <em>Juliana</em> nos comenta con qué le gustaría vivir:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><strong>Dinero</strong></p></th>
+<th class="head text-center"><p><strong>Juventud</strong></p></th>
+<th class="head text-center"><p><strong>Tiempo</strong></p></th>
+<th class="head text-center"><p><strong>Respuesta</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nuestro objetivo ahora es crear un perceptrón que pueda simular la respuesta de Juliana para los casos que hacen falta.</p>
+<p>Iniciamos, guardando en dos matrices las respuestas de Juliana, 0 significa <code class="docutils literal notranslate"><span class="pre">No</span></code> y 1 significa <code class="docutils literal notranslate"><span class="pre">Sí</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#Entradas</span>
+<span class="n">input_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="c1">#Salida</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="mi">0</span><span class="p">,</span>
+                    <span class="mi">0</span><span class="p">,</span>
+                    <span class="mi">1</span><span class="p">,</span>
+                    <span class="mi">1</span><span class="p">,</span>
+                    <span class="mi">0</span><span class="p">,</span>
+                    <span class="mi">1</span><span class="p">]])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tabla anterior:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><strong>Dinero</strong></p></th>
+<th class="head text-center"><p><strong>Juventud</strong></p></th>
+<th class="head text-center"><p><strong>Tiempo</strong></p></th>
+<th class="head text-center"><p><strong>Respuesta</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p><em>No</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>No</p></td>
+<td class="text-center"><p>Sí</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p><em>Sí</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ahora en numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">input_set</span><span class="p">,</span><span class="n">labels</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 1],
+       [0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 1, 0, 1],
+       [1, 1, 1, 1],
+       [0, 1, 1, 0],
+       [0, 1, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="que-es-un-perceptron">
+<h2>¿Qué es un perceptrón?<a class="headerlink" href="#que-es-un-perceptron" title="Link to this heading">#</a></h2>
+<p><img alt="Perceptron" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Perceptr%C3%B3n_5_unidades.svg/800px-Perceptr%C3%B3n_5_unidades.svg.png" /></p>
+<p><em>Tomada de <a class="reference external" href="https://es.wikipedia.org/wiki/Perceptr%C3%B3n">Wikipedia</a></em></p>
+<p>El objetivo de un perceptrón es establecer unos pesos <span class="math notranslate nohighlight">\(w=(w_1,w_2,\cdots,w_n)\)</span> y un valor de sesgo <span class="math notranslate nohighlight">\(b\)</span> que satisfaga lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{y}=\begin{cases} 1, \text{ si } w\cdot x=\sum\limits_{i=1}^{n}w_i\cdot x_i&gt;b\\
+0, \text{ en otro caso.}\end{cases}\end{split}\]</div>
+<p>La activación del perceptron (tomar valores 0 o 1) puede depender tambien de una función de activación.</p>
+<p><strong>Problema Inicial</strong></p>
+<p>En nuestro problema:</p>
+<div class="math notranslate nohighlight">
+\[w=(0.178,0.785,-0.321)\]</div>
+<div class="math notranslate nohighlight">
+\[b=0.5\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">input_set</span><span class="p">,</span><span class="n">labels</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 1],
+       [0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 1, 0, 1],
+       [1, 1, 1, 1],
+       [0, 1, 1, 0],
+       [0, 1, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.17857143</span><span class="p">,</span><span class="mf">0.78571429</span><span class="p">,</span><span class="o">-</span><span class="mf">0.32142857</span><span class="p">])</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Respuestas</span><span class="o">=</span><span class="n">input_set</span><span class="nd">@w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Respuestas</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 1, 1, 0, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Definimos la función de activación de salto</strong> que a partir de 0.5 tomara como valor de salida 1, y en otro caso 0.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{y}=\begin{cases} 1, \text{ si } w\cdot x=\sum\limits_{i=1}^{n}w_i\cdot x_i&gt;b\\
+0, \text{ en otro caso.}\end{cases}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">funcion_activacion</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;</span><span class="n">b</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_set</span><span class="p">:</span>
+    <span class="n">y1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">funcion_activacion</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 1, 1, 0, 1]
+[1 0 0 1 1 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">funcion_activacion</span><span class="p">(</span><span class="n">w</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ahora-sin-trampa-como-logramos-esos-pesos-deseados">
+<h2>Ahora sin trampa, como logramos esos pesos deseados<a class="headerlink" href="#ahora-sin-trampa-como-logramos-esos-pesos-deseados" title="Link to this heading">#</a></h2>
+<p>El ejercicio inicia con unos pesos aleatorios que irán mejorando de acuerdo a una función de error que busca un mínimo siguiendo la dirección de un vector en dirección de su gradiente negativo:</p>
+<p><strong>Definimos pesos</strong></p>
+<p><em>Totalmente aleatorio</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.11302967],
+       [0.66779253],
+       [0.25041864]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Sesgo</strong></p>
+<p><em>También aleatorio</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+<span class="n">bias</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8012777823662306
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_set</span><span class="p">:</span>
+    <span class="n">y1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">funcion_activacion</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">bias</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 1, 1, 0]
+[1 0 0 1 1 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tasa de aprendizaje</strong>
+Que tan rápido buscaremos el mínimo, no puede ser tan grande.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.05</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Función de activación</strong></p>
+<p>Las derivadas de la función mencionada anteriormente pueden generar conflictos, no nos compliquemos, utilicemos la bella función sigmoide, una generalización de la función logística:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/424b0c74434158c22b1164305321d0916ece72b7dc3cff772ab4f7794063837c.png" src="_images/424b0c74434158c22b1164305321d0916ece72b7dc3cff772ab4f7794063837c.png" />
+</div>
+</div>
+<p>Usaremos la derivada de la función, veamos un gráfico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sigmoid_derivative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># red dashes, blue squares and green triangles</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sigmoid_derivative</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;g--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2eadd23b7dc0d5dc956f6bdf1f34b82c2445d953b8c7a123d52253eb635df12f.png" src="_images/2eadd23b7dc0d5dc956f6bdf1f34b82c2445d953b8c7a123d52253eb635df12f.png" />
+</div>
+</div>
+<p>Ahora veamos las dos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span><span class="n">sigmoid_derivative</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;g--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/19e7420a7eeec1c2c49bbb3be8a0912840e9407e9153ea9734c7bef7413d46ba.png" src="_images/19e7420a7eeec1c2c49bbb3be8a0912840e9407e9153ea9734c7bef7413d46ba.png" />
+</div>
+</div>
+<p>Usando un poco de cálculo vectorial podemos determinar el gradiente de la función que expresa el error obtenido con los pesos que propusimos. Seguimos la dirección negativa del gradiente y buscamos el mínimo error, aquí vemos la actualización de pesos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">input_set</span>
+    <span class="n">XW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span><span class="o">+</span> <span class="n">bias</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">XW</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">z</span> <span class="o">-</span> <span class="n">labels</span>
+    <span class="n">dcost</span> <span class="o">=</span> <span class="n">error</span>
+    <span class="n">dpred</span> <span class="o">=</span> <span class="n">sigmoid_derivative</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">z_del</span> <span class="o">=</span> <span class="n">dcost</span> <span class="o">*</span> <span class="n">dpred</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">input_set</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">-</span> <span class="n">lr</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">z_del</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">z_del</span><span class="p">:</span>
+        <span class="n">bias</span> <span class="o">=</span> <span class="n">bias</span> <span class="o">-</span> <span class="n">lr</span><span class="o">*</span><span class="n">num</span>
+    <span class="c1">#print(&#39;epoch &#39;+str(i)+&#39;, new weights: &#39;+str(weights))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epoch &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; new labels&#39;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch 0 new labels [[0.81291604]
+ [0.74110053]
+ [0.71388079]
+ [0.82950172]
+ [0.86206149]
+ [0.848063  ]
+ [0.81291604]]
+epoch 1 new labels [[0.80995838]
+ [0.73467661]
+ [0.70930685]
+ [0.82608564]
+ [0.85729373]
+ [0.84351222]
+ [0.80995838]]
+epoch 2 new labels [[0.80703844]
+ [0.7282343 ]
+ [0.70477539]
+ [0.82270337]
+ [0.85248208]
+ [0.83893312]
+ [0.80703844]]
+epoch 3 new labels [[0.80415878]
+ [0.72177899]
+ [0.70028937]
+ [0.81935873]
+ [0.84763256]
+ [0.83433065]
+ [0.80415878]]
+epoch 4 new labels [[0.80132184]
+ [0.71531601]
+ [0.69585165]
+ [0.81605543]
+ [0.84275126]
+ [0.82970975]
+ [0.80132184]]
+epoch 5 new labels [[0.79852996]
+ [0.70885062]
+ [0.69146487]
+ [0.81279701]
+ [0.83784435]
+ [0.82507538]
+ [0.79852996]]
+epoch 6 new labels [[0.79578531]
+ [0.70238795]
+ [0.68713153]
+ [0.80958686]
+ [0.832918  ]
+ [0.82043245]
+ [0.79578531]]
+epoch 7 new labels [[0.79308995]
+ [0.69593301]
+ [0.68285397]
+ [0.80642819]
+ [0.82797837]
+ [0.81578586]
+ [0.79308995]]
+epoch 8 new labels [[0.79044581]
+ [0.68949069]
+ [0.67863431]
+ [0.80332405]
+ [0.82303159]
+ [0.81114041]
+ [0.79044581]]
+epoch 9 new labels [[0.78785464]
+ [0.68306569]
+ [0.67447453]
+ [0.80027728]
+ [0.81808369]
+ [0.80650081]
+ [0.78785464]]
+epoch 10 new labels [[0.78531809]
+ [0.67666256]
+ [0.67037642]
+ [0.79729055]
+ [0.81314064]
+ [0.80187168]
+ [0.78531809]]
+epoch 11 new labels [[0.78283762]
+ [0.67028566]
+ [0.66634158]
+ [0.79436632]
+ [0.80820823]
+ [0.79725751]
+ [0.78283762]]
+epoch 12 new labels [[0.78041458]
+ [0.66393914]
+ [0.66237145]
+ [0.79150685]
+ [0.80329212]
+ [0.79266262]
+ [0.78041458]]
+epoch 13 new labels [[0.77805016]
+ [0.65762697]
+ [0.65846729]
+ [0.78871419]
+ [0.7983978 ]
+ [0.7880912 ]
+ [0.77805016]]
+epoch 14 new labels [[0.77574539]
+ [0.6513529 ]
+ [0.65463019]
+ [0.78599021]
+ [0.79353053]
+ [0.78354727]
+ [0.77574539]]
+epoch 15 new labels [[0.77350116]
+ [0.64512045]
+ [0.65086105]
+ [0.78333655]
+ [0.78869538]
+ [0.77903464]
+ [0.77350116]]
+epoch 16 new labels [[0.77131824]
+ [0.63893294]
+ [0.64716065]
+ [0.78075466]
+ [0.78389718]
+ [0.77455696]
+ [0.77131824]]
+epoch 17 new labels [[0.76919723]
+ [0.63279345]
+ [0.64352957]
+ [0.77824579]
+ [0.77914049]
+ [0.77011765]
+ [0.76919723]]
+epoch 18 new labels [[0.76713861]
+ [0.62670486]
+ [0.63996826]
+ [0.77581099]
+ [0.77442964]
+ [0.76571996]
+ [0.76713861]]
+epoch 19 new labels [[0.76514272]
+ [0.62066979]
+ [0.63647702]
+ [0.77345113]
+ [0.76976868]
+ [0.76136689]
+ [0.76514272]]
+epoch 20 new labels [[0.76320979]
+ [0.61469068]
+ [0.633056  ]
+ [0.77116688]
+ [0.7651614 ]
+ [0.75706127]
+ [0.76320979]]
+epoch 21 new labels [[0.76133991]
+ [0.60876973]
+ [0.62970523]
+ [0.76895874]
+ [0.76061129]
+ [0.75280567]
+ [0.76133991]]
+epoch 22 new labels [[0.75953305]
+ [0.60290892]
+ [0.62642459]
+ [0.76682705]
+ [0.75612158]
+ [0.74860249]
+ [0.75953305]]
+epoch 23 new labels [[0.75778909]
+ [0.59711003]
+ [0.62321388]
+ [0.76477195]
+ [0.75169523]
+ [0.74445389]
+ [0.75778909]]
+epoch 24 new labels [[0.75610777]
+ [0.59137465]
+ [0.62007276]
+ [0.76279345]
+ [0.7473349 ]
+ [0.74036182]
+ [0.75610777]]
+epoch 25 new labels [[0.75448877]
+ [0.58570415]
+ [0.61700078]
+ [0.76089141]
+ [0.74304299]
+ [0.73632805]
+ [0.75448877]]
+epoch 26 new labels [[0.75293165]
+ [0.58009973]
+ [0.61399741]
+ [0.75906554]
+ [0.73882165]
+ [0.73235411]
+ [0.75293165]]
+epoch 27 new labels [[0.75143589]
+ [0.57456239]
+ [0.61106202]
+ [0.75731541]
+ [0.73467275]
+ [0.72844137]
+ [0.75143589]]
+epoch 28 new labels [[0.75000088]
+ [0.56909298]
+ [0.6081939 ]
+ [0.75564049]
+ [0.73059791]
+ [0.72459099]
+ [0.75000088]]
+epoch 29 new labels [[0.74862594]
+ [0.56369217]
+ [0.60539227]
+ [0.75404012]
+ [0.72659853]
+ [0.72080395]
+ [0.74862594]]
+epoch 30 new labels [[0.74731033]
+ [0.55836047]
+ [0.60265627]
+ [0.75251353]
+ [0.72267573]
+ [0.71708107]
+ [0.74731033]]
+epoch 31 new labels [[0.74605323]
+ [0.55309825]
+ [0.59998499]
+ [0.75105985]
+ [0.71883047]
+ [0.71342298]
+ [0.74605323]]
+epoch 32 new labels [[0.74485377]
+ [0.54790575]
+ [0.59737745]
+ [0.74967814]
+ [0.71506344]
+ [0.70983017]
+ [0.74485377]]
+epoch 33 new labels [[0.74371103]
+ [0.54278306]
+ [0.59483263]
+ [0.74836734]
+ [0.71137517]
+ [0.70630298]
+ [0.74371103]]
+epoch 34 new labels [[0.74262404]
+ [0.53773018]
+ [0.59234945]
+ [0.74712637]
+ [0.70776597]
+ [0.70284158]
+ [0.74262404]]
+epoch 35 new labels [[0.74159179]
+ [0.53274696]
+ [0.58992683]
+ [0.74595402]
+ [0.704236  ]
+ [0.69944605]
+ [0.74159179]]
+epoch 36 new labels [[0.74061323]
+ [0.52783316]
+ [0.58756361]
+ [0.74484908]
+ [0.70078523]
+ [0.69611631]
+ [0.74061323]]
+epoch 37 new labels [[0.73968727]
+ [0.52298847]
+ [0.58525864]
+ [0.74381024]
+ [0.6974135 ]
+ [0.69285218]
+ [0.73968727]]
+epoch 38 new labels [[0.73881282]
+ [0.51821245]
+ [0.58301072]
+ [0.74283619]
+ [0.69412048]
+ [0.68965336]
+ [0.73881282]]
+epoch 39 new labels [[0.73798874]
+ [0.51350462]
+ [0.58081865]
+ [0.74192553]
+ [0.69090571]
+ [0.68651948]
+ [0.73798874]]
+epoch 40 new labels [[0.73721389]
+ [0.50886438]
+ [0.57868121]
+ [0.74107688]
+ [0.68776864]
+ [0.68345004]
+ [0.73721389]]
+epoch 41 new labels [[0.73648711]
+ [0.50429112]
+ [0.57659716]
+ [0.7402888 ]
+ [0.68470857]
+ [0.68044449]
+ [0.73648711]]
+epoch 42 new labels [[0.73580722]
+ [0.49978413]
+ [0.57456527]
+ [0.73955982]
+ [0.68172472]
+ [0.67750217]
+ [0.73580722]]
+epoch 43 new labels [[0.73517303]
+ [0.49534266]
+ [0.5725843 ]
+ [0.73888849]
+ [0.67881621]
+ [0.67462238]
+ [0.73517303]]
+epoch 44 new labels [[0.73458338]
+ [0.49096592]
+ [0.570653  ]
+ [0.73827332]
+ [0.67598209]
+ [0.67180435]
+ [0.73458338]]
+epoch 45 new labels [[0.73403707]
+ [0.48665306]
+ [0.56877014]
+ [0.73771282]
+ [0.67322132]
+ [0.66904724]
+ [0.73403707]]
+epoch 46 new labels [[0.73353292]
+ [0.48240321]
+ [0.56693448]
+ [0.73720549]
+ [0.67053281]
+ [0.66635018]
+ [0.73353292]]
+epoch 47 new labels [[0.73306974]
+ [0.47821547]
+ [0.56514481]
+ [0.73674985]
+ [0.66791541]
+ [0.66371225]
+ [0.73306974]]
+epoch 48 new labels [[0.73264637]
+ [0.47408892]
+ [0.56339989]
+ [0.73634441]
+ [0.6653679 ]
+ [0.66113249]
+ [0.73264637]]
+epoch 49 new labels [[0.73226164]
+ [0.47002259]
+ [0.56169854]
+ [0.73598768]
+ [0.66288906]
+ [0.65860991]
+ [0.73226164]]
+epoch 50 new labels [[0.73191439]
+ [0.46601552]
+ [0.56003955]
+ [0.73567819]
+ [0.66047759]
+ [0.65614348]
+ [0.73191439]]
+epoch 51 new labels [[0.73160349]
+ [0.46206673]
+ [0.55842176]
+ [0.73541448]
+ [0.6581322 ]
+ [0.65373218]
+ [0.73160349]]
+epoch 52 new labels [[0.7313278 ]
+ [0.45817522]
+ [0.55684401]
+ [0.73519511]
+ [0.65585153]
+ [0.65137493]
+ [0.7313278 ]]
+epoch 53 new labels [[0.73108621]
+ [0.45433999]
+ [0.55530515]
+ [0.73501866]
+ [0.65363425]
+ [0.64907067]
+ [0.73108621]]
+epoch 54 new labels [[0.73087762]
+ [0.45056004]
+ [0.55380407]
+ [0.73488371]
+ [0.65147899]
+ [0.6468183 ]
+ [0.73087762]]
+epoch 55 new labels [[0.73070096]
+ [0.44683437]
+ [0.55233966]
+ [0.73478887]
+ [0.64938437]
+ [0.64461674]
+ [0.73070096]]
+epoch 56 new labels [[0.73055516]
+ [0.44316196]
+ [0.55091084]
+ [0.73473279]
+ [0.64734901]
+ [0.64246488]
+ [0.73055516]]
+epoch 57 new labels [[0.73043919]
+ [0.43954181]
+ [0.54951655]
+ [0.73471411]
+ [0.64537152]
+ [0.64036163]
+ [0.73043919]]
+epoch 58 new labels [[0.73035201]
+ [0.43597293]
+ [0.54815575]
+ [0.73473152]
+ [0.64345054]
+ [0.63830589]
+ [0.73035201]]
+epoch 59 new labels [[0.73029264]
+ [0.43245433]
+ [0.54682743]
+ [0.73478374]
+ [0.64158469]
+ [0.63629656]
+ [0.73029264]]
+epoch 60 new labels [[0.73026008]
+ [0.42898502]
+ [0.54553059]
+ [0.73486949]
+ [0.63977259]
+ [0.63433255]
+ [0.73026008]]
+epoch 61 new labels [[0.73025339]
+ [0.42556404]
+ [0.54426426]
+ [0.73498754]
+ [0.63801289]
+ [0.63241279]
+ [0.73025339]]
+epoch 62 new labels [[0.73027163]
+ [0.42219041]
+ [0.54302749]
+ [0.73513668]
+ [0.63630426]
+ [0.63053621]
+ [0.73027163]]
+epoch 63 new labels [[0.73031387]
+ [0.41886319]
+ [0.54181936]
+ [0.73531572]
+ [0.63464536]
+ [0.62870173]
+ [0.73031387]]
+epoch 64 new labels [[0.73037924]
+ [0.41558145]
+ [0.54063896]
+ [0.73552351]
+ [0.63303487]
+ [0.62690831]
+ [0.73037924]]
+epoch 65 new labels [[0.73046686]
+ [0.41234426]
+ [0.53948542]
+ [0.73575892]
+ [0.63147151]
+ [0.62515492]
+ [0.73046686]]
+epoch 66 new labels [[0.73057588]
+ [0.40915071]
+ [0.53835788]
+ [0.73602086]
+ [0.62995401]
+ [0.62344054]
+ [0.73057588]]
+epoch 67 new labels [[0.73070548]
+ [0.40599992]
+ [0.5372555 ]
+ [0.73630826]
+ [0.6284811 ]
+ [0.62176415]
+ [0.73070548]]
+epoch 68 new labels [[0.73085485]
+ [0.402891  ]
+ [0.53617748]
+ [0.73662009]
+ [0.62705156]
+ [0.62012478]
+ [0.73085485]]
+epoch 69 new labels [[0.73102323]
+ [0.3998231 ]
+ [0.53512302]
+ [0.73695532]
+ [0.62566418]
+ [0.61852146]
+ [0.73102323]]
+epoch 70 new labels [[0.73120983]
+ [0.39679538]
+ [0.53409136]
+ [0.73731298]
+ [0.62431776]
+ [0.61695322]
+ [0.73120983]]
+epoch 71 new labels [[0.73141394]
+ [0.393807  ]
+ [0.53308175]
+ [0.73769211]
+ [0.62301116]
+ [0.61541913]
+ [0.73141394]]
+epoch 72 new labels [[0.73163484]
+ [0.39085715]
+ [0.53209348]
+ [0.73809179]
+ [0.62174323]
+ [0.61391829]
+ [0.73163484]]
+epoch 73 new labels [[0.73187182]
+ [0.38794505]
+ [0.53112583]
+ [0.73851112]
+ [0.62051286]
+ [0.61244978]
+ [0.73187182]]
+epoch 74 new labels [[0.73212423]
+ [0.38506992]
+ [0.53017812]
+ [0.73894922]
+ [0.61931896]
+ [0.61101274]
+ [0.73212423]]
+epoch 75 new labels [[0.73239139]
+ [0.382231  ]
+ [0.5292497 ]
+ [0.73940525]
+ [0.61816047]
+ [0.6096063 ]
+ [0.73239139]]
+epoch 76 new labels [[0.73267269]
+ [0.37942754]
+ [0.52833992]
+ [0.73987839]
+ [0.61703636]
+ [0.60822962]
+ [0.73267269]]
+epoch 77 new labels [[0.73296751]
+ [0.37665884]
+ [0.52744816]
+ [0.74036786]
+ [0.6159456 ]
+ [0.60688189]
+ [0.73296751]]
+epoch 78 new labels [[0.73327525]
+ [0.37392417]
+ [0.52657382]
+ [0.74087287]
+ [0.61488721]
+ [0.6055623 ]
+ [0.73327525]]
+epoch 79 new labels [[0.73359534]
+ [0.37122285]
+ [0.52571631]
+ [0.7413927 ]
+ [0.61386024]
+ [0.60427008]
+ [0.73359534]]
+epoch 80 new labels [[0.73392723]
+ [0.3685542 ]
+ [0.52487507]
+ [0.74192662]
+ [0.61286373]
+ [0.60300446]
+ [0.73392723]]
+epoch 81 new labels [[0.73427037]
+ [0.36591757]
+ [0.52404955]
+ [0.74247393]
+ [0.61189679]
+ [0.6017647 ]
+ [0.73427037]]
+epoch 82 new labels [[0.73462425]
+ [0.36331232]
+ [0.52323922]
+ [0.74303398]
+ [0.61095852]
+ [0.60055008]
+ [0.73462425]]
+epoch 83 new labels [[0.73498837]
+ [0.36073783]
+ [0.52244356]
+ [0.7436061 ]
+ [0.61004807]
+ [0.59935989]
+ [0.73498837]]
+epoch 84 new labels [[0.73536223]
+ [0.35819347]
+ [0.52166209]
+ [0.74418968]
+ [0.60916458]
+ [0.59819345]
+ [0.73536223]]
+epoch 85 new labels [[0.73574538]
+ [0.35567866]
+ [0.52089431]
+ [0.74478411]
+ [0.60830724]
+ [0.59705009]
+ [0.73574538]]
+epoch 86 new labels [[0.73613735]
+ [0.35319283]
+ [0.52013976]
+ [0.7453888 ]
+ [0.60747526]
+ [0.59592916]
+ [0.73613735]]
+epoch 87 new labels [[0.73653771]
+ [0.3507354 ]
+ [0.51939799]
+ [0.7460032 ]
+ [0.60666787]
+ [0.59483004]
+ [0.73653771]]
+epoch 88 new labels [[0.73694604]
+ [0.34830584]
+ [0.51866857]
+ [0.74662677]
+ [0.60588432]
+ [0.5937521 ]
+ [0.73694604]]
+epoch 89 new labels [[0.73736193]
+ [0.34590359]
+ [0.51795108]
+ [0.74725897]
+ [0.60512389]
+ [0.59269475]
+ [0.73736193]]
+epoch 90 new labels [[0.73778498]
+ [0.34352815]
+ [0.5172451 ]
+ [0.74789931]
+ [0.60438586]
+ [0.59165741]
+ [0.73778498]]
+epoch 91 new labels [[0.73821483]
+ [0.341179  ]
+ [0.51655025]
+ [0.74854731]
+ [0.60366955]
+ [0.59063952]
+ [0.73821483]]
+epoch 92 new labels [[0.73865109]
+ [0.33885565]
+ [0.51586615]
+ [0.74920249]
+ [0.60297431]
+ [0.58964052]
+ [0.73865109]]
+epoch 93 new labels [[0.73909343]
+ [0.33655763]
+ [0.51519243]
+ [0.74986441]
+ [0.60229947]
+ [0.5886599 ]
+ [0.73909343]]
+epoch 94 new labels [[0.73954151]
+ [0.33428445]
+ [0.51452873]
+ [0.75053263]
+ [0.60164443]
+ [0.58769713]
+ [0.73954151]]
+epoch 95 new labels [[0.73999498]
+ [0.33203567]
+ [0.51387471]
+ [0.75120674]
+ [0.60100857]
+ [0.58675171]
+ [0.73999498]]
+epoch 96 new labels [[0.74045355]
+ [0.32981084]
+ [0.51323004]
+ [0.75188633]
+ [0.60039131]
+ [0.58582315]
+ [0.74045355]]
+epoch 97 new labels [[0.74091691]
+ [0.32760953]
+ [0.51259441]
+ [0.75257102]
+ [0.59979208]
+ [0.58491099]
+ [0.74091691]]
+epoch 98 new labels [[0.74138476]
+ [0.32543132]
+ [0.51196749]
+ [0.75326044]
+ [0.59921033]
+ [0.58401477]
+ [0.74138476]]
+epoch 99 new labels [[0.74185682]
+ [0.32327579]
+ [0.511349  ]
+ [0.75395424]
+ [0.59864551]
+ [0.58313404]
+ [0.74185682]]
+epoch 100 new labels [[0.74233283]
+ [0.32114255]
+ [0.51073864]
+ [0.75465207]
+ [0.59809713]
+ [0.58226836]
+ [0.74233283]]
+epoch 101 new labels [[0.74281253]
+ [0.31903121]
+ [0.51013614]
+ [0.7553536 ]
+ [0.59756466]
+ [0.58141734]
+ [0.74281253]]
+epoch 102 new labels [[0.74329566]
+ [0.3169414 ]
+ [0.50954123]
+ [0.75605852]
+ [0.59704764]
+ [0.58058055]
+ [0.74329566]]
+epoch 103 new labels [[0.74378198]
+ [0.31487273]
+ [0.50895365]
+ [0.75676652]
+ [0.59654558]
+ [0.5797576 ]
+ [0.74378198]]
+epoch 104 new labels [[0.74427127]
+ [0.31282485]
+ [0.50837315]
+ [0.75747731]
+ [0.59605803]
+ [0.57894812]
+ [0.74427127]]
+epoch 105 new labels [[0.74476329]
+ [0.31079742]
+ [0.50779949]
+ [0.75819062]
+ [0.59558456]
+ [0.57815174]
+ [0.74476329]]
+epoch 106 new labels [[0.74525785]
+ [0.30879009]
+ [0.50723244]
+ [0.75890617]
+ [0.59512473]
+ [0.57736809]
+ [0.74525785]]
+epoch 107 new labels [[0.74575472]
+ [0.30680253]
+ [0.50667176]
+ [0.75962372]
+ [0.59467813]
+ [0.57659683]
+ [0.74575472]]
+epoch 108 new labels [[0.74625372]
+ [0.30483441]
+ [0.50611725]
+ [0.76034301]
+ [0.59424437]
+ [0.57583762]
+ [0.74625372]]
+epoch 109 new labels [[0.74675465]
+ [0.30288542]
+ [0.50556869]
+ [0.7610638 ]
+ [0.59382305]
+ [0.57509014]
+ [0.74675465]]
+epoch 110 new labels [[0.74725733]
+ [0.30095526]
+ [0.50502589]
+ [0.76178588]
+ [0.5934138 ]
+ [0.57435407]
+ [0.74725733]]
+epoch 111 new labels [[0.7477616 ]
+ [0.29904362]
+ [0.50448864]
+ [0.76250902]
+ [0.59301625]
+ [0.5736291 ]
+ [0.7477616 ]]
+epoch 112 new labels [[0.74826727]
+ [0.2971502 ]
+ [0.50395676]
+ [0.76323301]
+ [0.59263007]
+ [0.57291494]
+ [0.74826727]]
+epoch 113 new labels [[0.74877419]
+ [0.29527474]
+ [0.50343008]
+ [0.76395767]
+ [0.59225489]
+ [0.5722113 ]
+ [0.74877419]]
+epoch 114 new labels [[0.74928221]
+ [0.29341694]
+ [0.5029084 ]
+ [0.7646828 ]
+ [0.59189041]
+ [0.57151789]
+ [0.74928221]]
+epoch 115 new labels [[0.74979117]
+ [0.29157654]
+ [0.50239157]
+ [0.76540821]
+ [0.5915363 ]
+ [0.57083445]
+ [0.74979117]]
+epoch 116 new labels [[0.75030094]
+ [0.28975327]
+ [0.50187942]
+ [0.76613373]
+ [0.59119225]
+ [0.57016072]
+ [0.75030094]]
+epoch 117 new labels [[0.75081138]
+ [0.28794687]
+ [0.5013718 ]
+ [0.76685921]
+ [0.59085796]
+ [0.56949644]
+ [0.75081138]]
+epoch 118 new labels [[0.75132236]
+ [0.2861571 ]
+ [0.50086855]
+ [0.76758447]
+ [0.59053315]
+ [0.56884137]
+ [0.75132236]]
+epoch 119 new labels [[0.75183375]
+ [0.28438371]
+ [0.50036953]
+ [0.76830936]
+ [0.59021754]
+ [0.56819526]
+ [0.75183375]]
+epoch 120 new labels [[0.75234543]
+ [0.28262645]
+ [0.49987459]
+ [0.76903375]
+ [0.58991085]
+ [0.56755788]
+ [0.75234543]]
+epoch 121 new labels [[0.7528573 ]
+ [0.2808851 ]
+ [0.49938361]
+ [0.76975749]
+ [0.58961283]
+ [0.56692902]
+ [0.7528573 ]]
+epoch 122 new labels [[0.75336923]
+ [0.27915942]
+ [0.49889645]
+ [0.77048046]
+ [0.58932323]
+ [0.56630845]
+ [0.75336923]]
+epoch 123 new labels [[0.75388113]
+ [0.27744919]
+ [0.49841297]
+ [0.77120252]
+ [0.58904179]
+ [0.56569596]
+ [0.75388113]]
+epoch 124 new labels [[0.75439289]
+ [0.27575419]
+ [0.49793308]
+ [0.77192355]
+ [0.58876829]
+ [0.56509135]
+ [0.75439289]]
+epoch 125 new labels [[0.75490442]
+ [0.27407422]
+ [0.49745663]
+ [0.77264344]
+ [0.58850249]
+ [0.56449442]
+ [0.75490442]]
+epoch 126 new labels [[0.75541562]
+ [0.27240906]
+ [0.49698353]
+ [0.77336209]
+ [0.58824418]
+ [0.56390498]
+ [0.75541562]]
+epoch 127 new labels [[0.75592641]
+ [0.2707585 ]
+ [0.49651366]
+ [0.77407939]
+ [0.58799313]
+ [0.56332283]
+ [0.75592641]]
+epoch 128 new labels [[0.7564367 ]
+ [0.26912236]
+ [0.49604691]
+ [0.77479523]
+ [0.58774914]
+ [0.56274781]
+ [0.7564367 ]]
+epoch 129 new labels [[0.75694642]
+ [0.26750043]
+ [0.49558319]
+ [0.77550953]
+ [0.58751202]
+ [0.56217974]
+ [0.75694642]]
+epoch 130 new labels [[0.75745548]
+ [0.26589253]
+ [0.4951224 ]
+ [0.7762222 ]
+ [0.58728156]
+ [0.56161844]
+ [0.75745548]]
+epoch 131 new labels [[0.75796382]
+ [0.26429846]
+ [0.49466444]
+ [0.77693315]
+ [0.58705758]
+ [0.56106375]
+ [0.75796382]]
+epoch 132 new labels [[0.75847135]
+ [0.26271805]
+ [0.49420923]
+ [0.7776423 ]
+ [0.5868399 ]
+ [0.56051551]
+ [0.75847135]]
+epoch 133 new labels [[0.75897803]
+ [0.26115112]
+ [0.49375666]
+ [0.77834958]
+ [0.58662834]
+ [0.55997357]
+ [0.75897803]]
+epoch 134 new labels [[0.75948377]
+ [0.25959749]
+ [0.49330667]
+ [0.77905491]
+ [0.58642273]
+ [0.55943777]
+ [0.75948377]]
+epoch 135 new labels [[0.75998853]
+ [0.258057  ]
+ [0.49285917]
+ [0.77975822]
+ [0.5862229 ]
+ [0.55890798]
+ [0.75998853]]
+epoch 136 new labels [[0.76049224]
+ [0.25652947]
+ [0.49241407]
+ [0.78045946]
+ [0.58602871]
+ [0.55838405]
+ [0.76049224]]
+epoch 137 new labels [[0.76099485]
+ [0.25501475]
+ [0.49197131]
+ [0.78115855]
+ [0.58583998]
+ [0.55786583]
+ [0.76099485]]
+epoch 138 new labels [[0.76149631]
+ [0.25351267]
+ [0.49153081]
+ [0.78185544]
+ [0.58565658]
+ [0.55735321]
+ [0.76149631]]
+epoch 139 new labels [[0.76199656]
+ [0.25202307]
+ [0.4910925 ]
+ [0.78255008]
+ [0.58547835]
+ [0.55684605]
+ [0.76199656]]
+epoch 140 new labels [[0.76249556]
+ [0.2505458 ]
+ [0.49065632]
+ [0.78324241]
+ [0.58530517]
+ [0.55634422]
+ [0.76249556]]
+epoch 141 new labels [[0.76299326]
+ [0.24908072]
+ [0.49022219]
+ [0.78393238]
+ [0.58513688]
+ [0.55584761]
+ [0.76299326]]
+epoch 142 new labels [[0.76348963]
+ [0.24762766]
+ [0.48979005]
+ [0.78461996]
+ [0.58497337]
+ [0.55535609]
+ [0.76348963]]
+epoch 143 new labels [[0.76398462]
+ [0.24618649]
+ [0.48935985]
+ [0.78530509]
+ [0.5848145 ]
+ [0.55486955]
+ [0.76398462]]
+epoch 144 new labels [[0.76447819]
+ [0.24475707]
+ [0.48893153]
+ [0.78598774]
+ [0.58466015]
+ [0.55438788]
+ [0.76447819]]
+epoch 145 new labels [[0.7649703 ]
+ [0.24333926]
+ [0.48850502]
+ [0.78666786]
+ [0.5845102 ]
+ [0.55391098]
+ [0.7649703 ]]
+epoch 146 new labels [[0.76546092]
+ [0.24193291]
+ [0.48808028]
+ [0.78734543]
+ [0.58436454]
+ [0.55343873]
+ [0.76546092]]
+epoch 147 new labels [[0.76595003]
+ [0.2405379 ]
+ [0.48765725]
+ [0.78802041]
+ [0.58422305]
+ [0.55297103]
+ [0.76595003]]
+epoch 148 new labels [[0.76643758]
+ [0.23915409]
+ [0.48723588]
+ [0.78869276]
+ [0.58408563]
+ [0.5525078 ]
+ [0.76643758]]
+epoch 149 new labels [[0.76692355]
+ [0.23778135]
+ [0.48681613]
+ [0.78936247]
+ [0.58395217]
+ [0.55204892]
+ [0.76692355]]
+epoch 150 new labels [[0.7674079 ]
+ [0.23641956]
+ [0.48639794]
+ [0.7900295 ]
+ [0.58382257]
+ [0.55159431]
+ [0.7674079 ]]
+epoch 151 new labels [[0.76789063]
+ [0.23506859]
+ [0.48598127]
+ [0.79069383]
+ [0.58369674]
+ [0.55114387]
+ [0.76789063]]
+epoch 152 new labels [[0.76837169]
+ [0.23372832]
+ [0.48556608]
+ [0.79135543]
+ [0.58357456]
+ [0.55069753]
+ [0.76837169]]
+epoch 153 new labels [[0.76885107]
+ [0.23239863]
+ [0.48515233]
+ [0.79201429]
+ [0.58345596]
+ [0.55025519]
+ [0.76885107]]
+epoch 154 new labels [[0.76932874]
+ [0.2310794 ]
+ [0.48473997]
+ [0.79267038]
+ [0.58334085]
+ [0.54981676]
+ [0.76932874]]
+epoch 155 new labels [[0.7698047 ]
+ [0.22977052]
+ [0.48432896]
+ [0.79332369]
+ [0.58322913]
+ [0.54938218]
+ [0.7698047 ]]
+epoch 156 new labels [[0.7702789 ]
+ [0.22847187]
+ [0.48391928]
+ [0.79397421]
+ [0.58312072]
+ [0.54895135]
+ [0.7702789 ]]
+epoch 157 new labels [[0.77075135]
+ [0.22718333]
+ [0.48351087]
+ [0.79462191]
+ [0.58301555]
+ [0.54852421]
+ [0.77075135]]
+epoch 158 new labels [[0.77122201]
+ [0.2259048 ]
+ [0.48310372]
+ [0.79526679]
+ [0.58291352]
+ [0.54810068]
+ [0.77122201]]
+epoch 159 new labels [[0.77169088]
+ [0.22463617]
+ [0.48269778]
+ [0.79590883]
+ [0.58281458]
+ [0.54768069]
+ [0.77169088]]
+epoch 160 new labels [[0.77215795]
+ [0.22337734]
+ [0.48229302]
+ [0.79654802]
+ [0.58271863]
+ [0.54726416]
+ [0.77215795]]
+epoch 161 new labels [[0.77262319]
+ [0.22212819]
+ [0.48188941]
+ [0.79718435]
+ [0.58262562]
+ [0.54685104]
+ [0.77262319]]
+epoch 162 new labels [[0.7730866 ]
+ [0.22088863]
+ [0.48148692]
+ [0.79781783]
+ [0.58253546]
+ [0.54644124]
+ [0.7730866 ]]
+epoch 163 new labels [[0.77354817]
+ [0.21965855]
+ [0.48108553]
+ [0.79844843]
+ [0.5824481 ]
+ [0.54603471]
+ [0.77354817]]
+epoch 164 new labels [[0.77400788]
+ [0.21843786]
+ [0.4806852 ]
+ [0.79907615]
+ [0.58236346]
+ [0.54563139]
+ [0.77400788]]
+epoch 165 new labels [[0.77446572]
+ [0.21722645]
+ [0.4802859 ]
+ [0.799701  ]
+ [0.58228148]
+ [0.54523121]
+ [0.77446572]]
+epoch 166 new labels [[0.7749217 ]
+ [0.21602423]
+ [0.47988762]
+ [0.80032296]
+ [0.58220211]
+ [0.54483412]
+ [0.7749217 ]]
+epoch 167 new labels [[0.77537579]
+ [0.2148311 ]
+ [0.47949033]
+ [0.80094203]
+ [0.58212528]
+ [0.54444005]
+ [0.77537579]]
+epoch 168 new labels [[0.775828  ]
+ [0.21364697]
+ [0.47909399]
+ [0.80155821]
+ [0.58205093]
+ [0.54404895]
+ [0.775828  ]]
+epoch 169 new labels [[0.77627831]
+ [0.21247175]
+ [0.4786986 ]
+ [0.80217151]
+ [0.581979  ]
+ [0.54366076]
+ [0.77627831]]
+epoch 170 new labels [[0.77672672]
+ [0.21130534]
+ [0.47830413]
+ [0.80278192]
+ [0.58190945]
+ [0.54327544]
+ [0.77672672]]
+epoch 171 new labels [[0.77717322]
+ [0.21014766]
+ [0.47791055]
+ [0.80338944]
+ [0.58184222]
+ [0.54289292]
+ [0.77717322]]
+epoch 172 new labels [[0.77761782]
+ [0.20899862]
+ [0.47751784]
+ [0.80399407]
+ [0.58177725]
+ [0.54251316]
+ [0.77761782]]
+epoch 173 new labels [[0.77806051]
+ [0.20785813]
+ [0.477126  ]
+ [0.80459582]
+ [0.5817145 ]
+ [0.54213611]
+ [0.77806051]]
+epoch 174 new labels [[0.77850128]
+ [0.2067261 ]
+ [0.47673499]
+ [0.8051947 ]
+ [0.58165392]
+ [0.54176172]
+ [0.77850128]]
+epoch 175 new labels [[0.77894014]
+ [0.20560246]
+ [0.4763448 ]
+ [0.80579069]
+ [0.58159546]
+ [0.54138994]
+ [0.77894014]]
+epoch 176 new labels [[0.77937707]
+ [0.20448711]
+ [0.47595541]
+ [0.80638381]
+ [0.58153908]
+ [0.54102073]
+ [0.77937707]]
+epoch 177 new labels [[0.77981209]
+ [0.20337998]
+ [0.4755668 ]
+ [0.80697407]
+ [0.58148472]
+ [0.54065404]
+ [0.77981209]]
+epoch 178 new labels [[0.78024518]
+ [0.20228098]
+ [0.47517897]
+ [0.80756147]
+ [0.58143235]
+ [0.54028983]
+ [0.78024518]]
+epoch 179 new labels [[0.78067636]
+ [0.20119004]
+ [0.47479188]
+ [0.80814601]
+ [0.58138193]
+ [0.53992805]
+ [0.78067636]]
+epoch 180 new labels [[0.78110561]
+ [0.20010707]
+ [0.47440553]
+ [0.80872771]
+ [0.58133342]
+ [0.53956867]
+ [0.78110561]]
+epoch 181 new labels [[0.78153294]
+ [0.199032  ]
+ [0.47401991]
+ [0.80930656]
+ [0.58128676]
+ [0.53921165]
+ [0.78153294]]
+epoch 182 new labels [[0.78195836]
+ [0.19796475]
+ [0.47363499]
+ [0.80988258]
+ [0.58124194]
+ [0.53885693]
+ [0.78195836]]
+epoch 183 new labels [[0.78238185]
+ [0.19690525]
+ [0.47325077]
+ [0.81045578]
+ [0.5811989 ]
+ [0.5385045 ]
+ [0.78238185]]
+epoch 184 new labels [[0.78280343]
+ [0.19585342]
+ [0.47286723]
+ [0.81102616]
+ [0.58115762]
+ [0.5381543 ]
+ [0.78280343]]
+epoch 185 new labels [[0.7832231 ]
+ [0.19480919]
+ [0.47248436]
+ [0.81159373]
+ [0.58111805]
+ [0.5378063 ]
+ [0.7832231 ]]
+epoch 186 new labels [[0.78364086]
+ [0.19377249]
+ [0.47210215]
+ [0.81215851]
+ [0.58108017]
+ [0.53746047]
+ [0.78364086]]
+epoch 187 new labels [[0.78405671]
+ [0.19274323]
+ [0.47172059]
+ [0.8127205 ]
+ [0.58104394]
+ [0.53711678]
+ [0.78405671]]
+epoch 188 new labels [[0.78447065]
+ [0.19172137]
+ [0.47133966]
+ [0.81327971]
+ [0.58100932]
+ [0.53677517]
+ [0.78447065]]
+epoch 189 new labels [[0.78488269]
+ [0.19070681]
+ [0.47095935]
+ [0.81383615]
+ [0.58097629]
+ [0.53643563]
+ [0.78488269]]
+epoch 190 new labels [[0.78529284]
+ [0.18969951]
+ [0.47057966]
+ [0.81438984]
+ [0.58094481]
+ [0.53609813]
+ [0.78529284]]
+epoch 191 new labels [[0.78570109]
+ [0.18869938]
+ [0.47020058]
+ [0.81494078]
+ [0.58091486]
+ [0.53576262]
+ [0.78570109]]
+epoch 192 new labels [[0.78610746]
+ [0.18770635]
+ [0.46982209]
+ [0.81548899]
+ [0.5808864 ]
+ [0.53542908]
+ [0.78610746]]
+epoch 193 new labels [[0.78651194]
+ [0.18672038]
+ [0.46944419]
+ [0.81603447]
+ [0.58085942]
+ [0.53509747]
+ [0.78651194]]
+epoch 194 new labels [[0.78691454]
+ [0.18574138]
+ [0.46906686]
+ [0.81657725]
+ [0.58083387]
+ [0.53476778]
+ [0.78691454]]
+epoch 195 new labels [[0.78731527]
+ [0.1847693 ]
+ [0.46869011]
+ [0.81711732]
+ [0.58080973]
+ [0.53443996]
+ [0.78731527]]
+epoch 196 new labels [[0.78771413]
+ [0.18380406]
+ [0.46831392]
+ [0.81765471]
+ [0.58078698]
+ [0.53411399]
+ [0.78771413]]
+epoch 197 new labels [[0.78811113]
+ [0.18284562]
+ [0.46793828]
+ [0.81818942]
+ [0.5807656 ]
+ [0.53378985]
+ [0.78811113]]
+epoch 198 new labels [[0.78850627]
+ [0.1818939 ]
+ [0.46756318]
+ [0.81872147]
+ [0.58074555]
+ [0.5334675 ]
+ [0.78850627]]
+epoch 199 new labels [[0.78889956]
+ [0.18094884]
+ [0.46718863]
+ [0.81925087]
+ [0.58072681]
+ [0.53314692]
+ [0.78889956]]
+epoch 200 new labels [[0.78929101]
+ [0.18001038]
+ [0.46681461]
+ [0.81977763]
+ [0.58070936]
+ [0.53282808]
+ [0.78929101]]
+epoch 201 new labels [[0.78968061]
+ [0.17907847]
+ [0.46644111]
+ [0.82030177]
+ [0.58069318]
+ [0.53251096]
+ [0.78968061]]
+epoch 202 new labels [[0.79006839]
+ [0.17815305]
+ [0.46606814]
+ [0.8208233 ]
+ [0.58067824]
+ [0.53219553]
+ [0.79006839]]
+epoch 203 new labels [[0.79045434]
+ [0.17723404]
+ [0.46569568]
+ [0.82134223]
+ [0.58066453]
+ [0.53188178]
+ [0.79045434]]
+epoch 204 new labels [[0.79083847]
+ [0.17632141]
+ [0.46532372]
+ [0.82185858]
+ [0.58065202]
+ [0.53156966]
+ [0.79083847]]
+epoch 205 new labels [[0.79122078]
+ [0.17541509]
+ [0.46495227]
+ [0.82237235]
+ [0.58064068]
+ [0.53125917]
+ [0.79122078]]
+epoch 206 new labels [[0.7916013 ]
+ [0.17451502]
+ [0.46458132]
+ [0.82288358]
+ [0.58063051]
+ [0.53095027]
+ [0.7916013 ]]
+epoch 207 new labels [[0.79198002]
+ [0.17362114]
+ [0.46421086]
+ [0.82339225]
+ [0.58062148]
+ [0.53064295]
+ [0.79198002]]
+epoch 208 new labels [[0.79235694]
+ [0.17273342]
+ [0.46384089]
+ [0.8238984 ]
+ [0.58061357]
+ [0.53033718]
+ [0.79235694]]
+epoch 209 new labels [[0.79273208]
+ [0.17185178]
+ [0.4634714 ]
+ [0.82440203]
+ [0.58060677]
+ [0.53003295]
+ [0.79273208]]
+epoch 210 new labels [[0.79310545]
+ [0.17097617]
+ [0.46310239]
+ [0.82490316]
+ [0.58060105]
+ [0.52973023]
+ [0.79310545]]
+epoch 211 new labels [[0.79347705]
+ [0.17010654]
+ [0.46273385]
+ [0.82540181]
+ [0.5805964 ]
+ [0.529429  ]
+ [0.79347705]]
+epoch 212 new labels [[0.79384689]
+ [0.16924285]
+ [0.46236578]
+ [0.82589798]
+ [0.5805928 ]
+ [0.52912924]
+ [0.79384689]]
+epoch 213 new labels [[0.79421498]
+ [0.16838503]
+ [0.46199818]
+ [0.82639169]
+ [0.58059023]
+ [0.52883093]
+ [0.79421498]]
+epoch 214 new labels [[0.79458132]
+ [0.16753303]
+ [0.46163105]
+ [0.82688295]
+ [0.58058868]
+ [0.52853405]
+ [0.79458132]]
+epoch 215 new labels [[0.79494592]
+ [0.16668681]
+ [0.46126437]
+ [0.82737178]
+ [0.58058813]
+ [0.52823858]
+ [0.79494592]]
+epoch 216 new labels [[0.7953088 ]
+ [0.16584632]
+ [0.46089815]
+ [0.8278582 ]
+ [0.58058856]
+ [0.52794451]
+ [0.7953088 ]]
+epoch 217 new labels [[0.79566995]
+ [0.16501149]
+ [0.46053238]
+ [0.82834221]
+ [0.58058997]
+ [0.52765181]
+ [0.79566995]]
+epoch 218 new labels [[0.79602939]
+ [0.16418229]
+ [0.46016706]
+ [0.82882383]
+ [0.58059233]
+ [0.52736047]
+ [0.79602939]]
+epoch 219 new labels [[0.79638713]
+ [0.16335867]
+ [0.45980219]
+ [0.82930308]
+ [0.58059564]
+ [0.52707047]
+ [0.79638713]]
+epoch 220 new labels [[0.79674317]
+ [0.16254058]
+ [0.45943776]
+ [0.82977996]
+ [0.58059987]
+ [0.52678179]
+ [0.79674317]]
+epoch 221 new labels [[0.79709752]
+ [0.16172796]
+ [0.45907377]
+ [0.8302545 ]
+ [0.58060501]
+ [0.52649442]
+ [0.79709752]]
+epoch 222 new labels [[0.79745019]
+ [0.16092078]
+ [0.45871022]
+ [0.83072671]
+ [0.58061105]
+ [0.52620833]
+ [0.79745019]]
+epoch 223 new labels [[0.79780119]
+ [0.16011898]
+ [0.45834711]
+ [0.8311966 ]
+ [0.58061798]
+ [0.52592352]
+ [0.79780119]]
+epoch 224 new labels [[0.79815052]
+ [0.15932253]
+ [0.45798443]
+ [0.83166418]
+ [0.58062578]
+ [0.52563997]
+ [0.79815052]]
+epoch 225 new labels [[0.7984982 ]
+ [0.15853137]
+ [0.45762219]
+ [0.83212947]
+ [0.58063444]
+ [0.52535765]
+ [0.7984982 ]]
+epoch 226 new labels [[0.79884423]
+ [0.15774546]
+ [0.45726037]
+ [0.83259249]
+ [0.58064395]
+ [0.52507656]
+ [0.79884423]]
+epoch 227 new labels [[0.79918862]
+ [0.15696475]
+ [0.45689898]
+ [0.83305325]
+ [0.58065429]
+ [0.52479668]
+ [0.79918862]]
+epoch 228 new labels [[0.79953138]
+ [0.15618921]
+ [0.45653802]
+ [0.83351175]
+ [0.58066546]
+ [0.524518  ]
+ [0.79953138]]
+epoch 229 new labels [[0.79987252]
+ [0.15541878]
+ [0.45617748]
+ [0.83396803]
+ [0.58067744]
+ [0.5242405 ]
+ [0.79987252]]
+epoch 230 new labels [[0.80021204]
+ [0.15465343]
+ [0.45581736]
+ [0.83442208]
+ [0.58069022]
+ [0.52396416]
+ [0.80021204]]
+epoch 231 new labels [[0.80054996]
+ [0.15389311]
+ [0.45545767]
+ [0.83487393]
+ [0.5807038 ]
+ [0.52368898]
+ [0.80054996]]
+epoch 232 new labels [[0.80088628]
+ [0.15313777]
+ [0.4550984 ]
+ [0.83532358]
+ [0.58071815]
+ [0.52341493]
+ [0.80088628]]
+epoch 233 new labels [[0.80122101]
+ [0.15238739]
+ [0.45473954]
+ [0.83577106]
+ [0.58073327]
+ [0.52314201]
+ [0.80122101]]
+epoch 234 new labels [[0.80155417]
+ [0.15164191]
+ [0.4543811 ]
+ [0.83621637]
+ [0.58074915]
+ [0.5228702 ]
+ [0.80155417]]
+epoch 235 new labels [[0.80188575]
+ [0.15090129]
+ [0.45402307]
+ [0.83665953]
+ [0.58076577]
+ [0.52259949]
+ [0.80188575]]
+epoch 236 new labels [[0.80221576]
+ [0.1501655 ]
+ [0.45366546]
+ [0.83710055]
+ [0.58078314]
+ [0.52232986]
+ [0.80221576]]
+epoch 237 new labels [[0.80254423]
+ [0.14943449]
+ [0.45330827]
+ [0.83753945]
+ [0.58080124]
+ [0.52206131]
+ [0.80254423]]
+epoch 238 new labels [[0.80287114]
+ [0.14870823]
+ [0.45295148]
+ [0.83797624]
+ [0.58082005]
+ [0.52179381]
+ [0.80287114]]
+epoch 239 new labels [[0.80319652]
+ [0.14798667]
+ [0.45259511]
+ [0.83841094]
+ [0.58083957]
+ [0.52152736]
+ [0.80319652]]
+epoch 240 new labels [[0.80352037]
+ [0.14726978]
+ [0.45223914]
+ [0.83884355]
+ [0.5808598 ]
+ [0.52126195]
+ [0.80352037]]
+epoch 241 new labels [[0.80384269]
+ [0.14655751]
+ [0.45188359]
+ [0.83927409]
+ [0.58088072]
+ [0.52099756]
+ [0.80384269]]
+epoch 242 new labels [[0.8041635 ]
+ [0.14584984]
+ [0.45152845]
+ [0.83970257]
+ [0.58090232]
+ [0.52073419]
+ [0.8041635 ]]
+epoch 243 new labels [[0.80448281]
+ [0.14514671]
+ [0.45117371]
+ [0.84012901]
+ [0.58092459]
+ [0.52047181]
+ [0.80448281]]
+epoch 244 new labels [[0.80480062]
+ [0.1444481 ]
+ [0.45081938]
+ [0.84055343]
+ [0.58094753]
+ [0.52021042]
+ [0.80480062]]
+epoch 245 new labels [[0.80511694]
+ [0.14375397]
+ [0.45046545]
+ [0.84097582]
+ [0.58097113]
+ [0.51995001]
+ [0.80511694]]
+epoch 246 new labels [[0.80543178]
+ [0.14306428]
+ [0.45011194]
+ [0.84139622]
+ [0.58099538]
+ [0.51969057]
+ [0.80543178]]
+epoch 247 new labels [[0.80574515]
+ [0.14237899]
+ [0.44975882]
+ [0.84181462]
+ [0.58102027]
+ [0.51943208]
+ [0.80574515]]
+epoch 248 new labels [[0.80605706]
+ [0.14169807]
+ [0.44940612]
+ [0.84223104]
+ [0.5810458 ]
+ [0.51917454]
+ [0.80605706]]
+epoch 249 new labels [[0.80636751]
+ [0.14102148]
+ [0.44905381]
+ [0.8426455 ]
+ [0.58107195]
+ [0.51891793]
+ [0.80636751]]
+epoch 250 new labels [[0.80667652]
+ [0.14034919]
+ [0.44870191]
+ [0.84305801]
+ [0.58109872]
+ [0.51866225]
+ [0.80667652]]
+epoch 251 new labels [[0.80698408]
+ [0.13968117]
+ [0.44835042]
+ [0.84346858]
+ [0.5811261 ]
+ [0.51840748]
+ [0.80698408]]
+epoch 252 new labels [[0.80729022]
+ [0.13901737]
+ [0.44799933]
+ [0.84387723]
+ [0.58115409]
+ [0.51815362]
+ [0.80729022]]
+epoch 253 new labels [[0.80759493]
+ [0.13835777]
+ [0.44764864]
+ [0.84428396]
+ [0.58118268]
+ [0.51790065]
+ [0.80759493]]
+epoch 254 new labels [[0.80789822]
+ [0.13770232]
+ [0.44729835]
+ [0.84468879]
+ [0.58121185]
+ [0.51764856]
+ [0.80789822]]
+epoch 255 new labels [[0.80820011]
+ [0.13705101]
+ [0.44694847]
+ [0.84509173]
+ [0.58124161]
+ [0.51739735]
+ [0.80820011]]
+epoch 256 new labels [[0.8085006 ]
+ [0.13640379]
+ [0.44659898]
+ [0.84549279]
+ [0.58127195]
+ [0.51714701]
+ [0.8085006 ]]
+epoch 257 new labels [[0.80879971]
+ [0.13576063]
+ [0.4462499 ]
+ [0.84589199]
+ [0.58130286]
+ [0.51689752]
+ [0.80879971]]
+epoch 258 new labels [[0.80909742]
+ [0.1351215 ]
+ [0.44590123]
+ [0.84628934]
+ [0.58133434]
+ [0.51664888]
+ [0.80909742]]
+epoch 259 new labels [[0.80939377]
+ [0.13448636]
+ [0.44555295]
+ [0.84668485]
+ [0.58136637]
+ [0.51640108]
+ [0.80939377]]
+epoch 260 new labels [[0.80968874]
+ [0.13385519]
+ [0.44520508]
+ [0.84707854]
+ [0.58139895]
+ [0.51615411]
+ [0.80968874]]
+epoch 261 new labels [[0.80998236]
+ [0.13322796]
+ [0.4448576 ]
+ [0.84747041]
+ [0.58143209]
+ [0.51590795]
+ [0.80998236]]
+epoch 262 new labels [[0.81027463]
+ [0.13260462]
+ [0.44451053]
+ [0.84786047]
+ [0.58146576]
+ [0.51566261]
+ [0.81027463]]
+epoch 263 new labels [[0.81056555]
+ [0.13198516]
+ [0.44416386]
+ [0.84824874]
+ [0.58149996]
+ [0.51541808]
+ [0.81056555]]
+epoch 264 new labels [[0.81085514]
+ [0.13136954]
+ [0.44381759]
+ [0.84863524]
+ [0.5815347 ]
+ [0.51517434]
+ [0.81085514]]
+epoch 265 new labels [[0.8111434 ]
+ [0.13075772]
+ [0.44347173]
+ [0.84901996]
+ [0.58156995]
+ [0.51493138]
+ [0.8111434 ]]
+epoch 266 new labels [[0.81143033]
+ [0.13014969]
+ [0.44312626]
+ [0.84940293]
+ [0.58160573]
+ [0.51468921]
+ [0.81143033]]
+epoch 267 new labels [[0.81171596]
+ [0.12954541]
+ [0.4427812 ]
+ [0.84978416]
+ [0.58164201]
+ [0.5144478 ]
+ [0.81171596]]
+epoch 268 new labels [[0.81200028]
+ [0.12894485]
+ [0.44243654]
+ [0.85016365]
+ [0.5816788 ]
+ [0.51420716]
+ [0.81200028]]
+epoch 269 new labels [[0.81228331]
+ [0.12834798]
+ [0.44209228]
+ [0.85054142]
+ [0.5817161 ]
+ [0.51396727]
+ [0.81228331]]
+epoch 270 new labels [[0.81256504]
+ [0.12775477]
+ [0.44174842]
+ [0.85091748]
+ [0.58175389]
+ [0.51372813]
+ [0.81256504]]
+epoch 271 new labels [[0.81284549]
+ [0.1271652 ]
+ [0.44140496]
+ [0.85129184]
+ [0.58179217]
+ [0.51348973]
+ [0.81284549]]
+epoch 272 new labels [[0.81312467]
+ [0.12657923]
+ [0.44106191]
+ [0.85166451]
+ [0.58183094]
+ [0.51325206]
+ [0.81312467]]
+epoch 273 new labels [[0.81340258]
+ [0.12599684]
+ [0.44071925]
+ [0.85203551]
+ [0.58187019]
+ [0.51301512]
+ [0.81340258]]
+epoch 274 new labels [[0.81367922]
+ [0.12541801]
+ [0.440377  ]
+ [0.85240484]
+ [0.58190991]
+ [0.5127789 ]
+ [0.81367922]]
+epoch 275 new labels [[0.81395462]
+ [0.12484269]
+ [0.44003516]
+ [0.85277251]
+ [0.58195011]
+ [0.51254338]
+ [0.81395462]]
+epoch 276 new labels [[0.81422877]
+ [0.12427087]
+ [0.43969371]
+ [0.85313854]
+ [0.58199077]
+ [0.51230857]
+ [0.81422877]]
+epoch 277 new labels [[0.81450168]
+ [0.12370251]
+ [0.43935267]
+ [0.85350294]
+ [0.58203189]
+ [0.51207445]
+ [0.81450168]]
+epoch 278 new labels [[0.81477336]
+ [0.1231376 ]
+ [0.43901203]
+ [0.85386571]
+ [0.58207348]
+ [0.51184102]
+ [0.81477336]]
+epoch 279 new labels [[0.81504382]
+ [0.1225761 ]
+ [0.43867179]
+ [0.85422687]
+ [0.58211551]
+ [0.51160828]
+ [0.81504382]]
+epoch 280 new labels [[0.81531306]
+ [0.12201799]
+ [0.43833196]
+ [0.85458644]
+ [0.582158  ]
+ [0.51137621]
+ [0.81531306]]
+epoch 281 new labels [[0.81558109]
+ [0.12146325]
+ [0.43799253]
+ [0.85494441]
+ [0.58220092]
+ [0.51114481]
+ [0.81558109]]
+epoch 282 new labels [[0.81584792]
+ [0.12091184]
+ [0.43765351]
+ [0.8553008 ]
+ [0.58224429]
+ [0.51091407]
+ [0.81584792]]
+epoch 283 new labels [[0.81611355]
+ [0.12036374]
+ [0.43731489]
+ [0.85565562]
+ [0.5822881 ]
+ [0.51068399]
+ [0.81611355]]
+epoch 284 new labels [[0.816378  ]
+ [0.11981893]
+ [0.43697667]
+ [0.85600887]
+ [0.58233233]
+ [0.51045456]
+ [0.816378  ]]
+epoch 285 new labels [[0.81664126]
+ [0.11927737]
+ [0.43663886]
+ [0.85636059]
+ [0.582377  ]
+ [0.51022577]
+ [0.81664126]]
+epoch 286 new labels [[0.81690335]
+ [0.11873906]
+ [0.43630145]
+ [0.85671076]
+ [0.58242209]
+ [0.50999762]
+ [0.81690335]]
+epoch 287 new labels [[0.81716427]
+ [0.11820395]
+ [0.43596445]
+ [0.8570594 ]
+ [0.58246759]
+ [0.5097701 ]
+ [0.81716427]]
+epoch 288 new labels [[0.81742403]
+ [0.11767203]
+ [0.43562785]
+ [0.85740652]
+ [0.58251352]
+ [0.5095432 ]
+ [0.81742403]]
+epoch 289 new labels [[0.81768263]
+ [0.11714328]
+ [0.43529166]
+ [0.85775213]
+ [0.58255985]
+ [0.50931693]
+ [0.81768263]]
+epoch 290 new labels [[0.81794009]
+ [0.11661766]
+ [0.43495587]
+ [0.85809624]
+ [0.5826066 ]
+ [0.50909126]
+ [0.81794009]]
+epoch 291 new labels [[0.8181964 ]
+ [0.11609516]
+ [0.43462049]
+ [0.85843886]
+ [0.58265375]
+ [0.5088662 ]
+ [0.8181964 ]]
+epoch 292 new labels [[0.81845159]
+ [0.11557575]
+ [0.43428552]
+ [0.85878001]
+ [0.5827013 ]
+ [0.50864175]
+ [0.81845159]]
+epoch 293 new labels [[0.81870564]
+ [0.1150594 ]
+ [0.43395095]
+ [0.85911968]
+ [0.58274924]
+ [0.50841789]
+ [0.81870564]]
+epoch 294 new labels [[0.81895857]
+ [0.11454611]
+ [0.43361679]
+ [0.85945789]
+ [0.58279758]
+ [0.50819462]
+ [0.81895857]]
+epoch 295 new labels [[0.81921039]
+ [0.11403583]
+ [0.43328303]
+ [0.85979464]
+ [0.58284631]
+ [0.50797193]
+ [0.81921039]]
+epoch 296 new labels [[0.81946111]
+ [0.11352855]
+ [0.43294969]
+ [0.86012996]
+ [0.58289543]
+ [0.50774982]
+ [0.81946111]]
+epoch 297 new labels [[0.81971072]
+ [0.11302426]
+ [0.43261675]
+ [0.86046384]
+ [0.58294493]
+ [0.50752829]
+ [0.81971072]]
+epoch 298 new labels [[0.81995923]
+ [0.11252291]
+ [0.43228421]
+ [0.8607963 ]
+ [0.58299481]
+ [0.50730732]
+ [0.81995923]]
+epoch 299 new labels [[0.82020666]
+ [0.1120245 ]
+ [0.43195209]
+ [0.86112734]
+ [0.58304507]
+ [0.50708692]
+ [0.82020666]]
+epoch 300 new labels [[0.820453  ]
+ [0.111529  ]
+ [0.43162037]
+ [0.86145698]
+ [0.5830957 ]
+ [0.50686707]
+ [0.820453  ]]
+epoch 301 new labels [[0.82069827]
+ [0.11103639]
+ [0.43128907]
+ [0.86178522]
+ [0.5831467 ]
+ [0.50664778]
+ [0.82069827]]
+epoch 302 new labels [[0.82094247]
+ [0.11054665]
+ [0.43095817]
+ [0.86211207]
+ [0.58319806]
+ [0.50642903]
+ [0.82094247]]
+epoch 303 new labels [[0.8211856 ]
+ [0.11005976]
+ [0.43062768]
+ [0.86243755]
+ [0.58324979]
+ [0.50621082]
+ [0.8211856 ]]
+epoch 304 new labels [[0.82142768]
+ [0.10957569]
+ [0.4302976 ]
+ [0.86276165]
+ [0.58330188]
+ [0.50599315]
+ [0.82142768]]
+epoch 305 new labels [[0.82166871]
+ [0.10909442]
+ [0.42996793]
+ [0.8630844 ]
+ [0.58335433]
+ [0.50577602]
+ [0.82166871]]
+epoch 306 new labels [[0.82190869]
+ [0.10861594]
+ [0.42963867]
+ [0.86340579]
+ [0.58340713]
+ [0.50555941]
+ [0.82190869]]
+epoch 307 new labels [[0.82214763]
+ [0.10814022]
+ [0.42930981]
+ [0.86372584]
+ [0.58346029]
+ [0.50534332]
+ [0.82214763]]
+epoch 308 new labels [[0.82238554]
+ [0.10766725]
+ [0.42898137]
+ [0.86404455]
+ [0.58351379]
+ [0.50512775]
+ [0.82238554]]
+epoch 309 new labels [[0.82262242]
+ [0.107197  ]
+ [0.42865334]
+ [0.86436193]
+ [0.58356763]
+ [0.5049127 ]
+ [0.82262242]]
+epoch 310 new labels [[0.82285829]
+ [0.10672945]
+ [0.42832572]
+ [0.864678  ]
+ [0.58362182]
+ [0.50469815]
+ [0.82285829]]
+epoch 311 new labels [[0.82309313]
+ [0.10626459]
+ [0.42799851]
+ [0.86499276]
+ [0.58367635]
+ [0.5044841 ]
+ [0.82309313]]
+epoch 312 new labels [[0.82332697]
+ [0.10580239]
+ [0.42767172]
+ [0.86530621]
+ [0.58373122]
+ [0.50427056]
+ [0.82332697]]
+epoch 313 new labels [[0.8235598 ]
+ [0.10534283]
+ [0.42734533]
+ [0.86561838]
+ [0.58378642]
+ [0.50405751]
+ [0.8235598 ]]
+epoch 314 new labels [[0.82379164]
+ [0.1048859 ]
+ [0.42701935]
+ [0.86592925]
+ [0.58384195]
+ [0.50384495]
+ [0.82379164]]
+epoch 315 new labels [[0.82402248]
+ [0.10443157]
+ [0.42669379]
+ [0.86623885]
+ [0.58389781]
+ [0.50363287]
+ [0.82402248]]
+epoch 316 new labels [[0.82425234]
+ [0.10397984]
+ [0.42636864]
+ [0.86654719]
+ [0.583954  ]
+ [0.50342128]
+ [0.82425234]]
+epoch 317 new labels [[0.82448122]
+ [0.10353067]
+ [0.4260439 ]
+ [0.86685426]
+ [0.58401051]
+ [0.50321016]
+ [0.82448122]]
+epoch 318 new labels [[0.82470913]
+ [0.10308405]
+ [0.42571957]
+ [0.86716007]
+ [0.58406734]
+ [0.50299951]
+ [0.82470913]]
+epoch 319 new labels [[0.82493606]
+ [0.10263996]
+ [0.42539566]
+ [0.86746464]
+ [0.58412449]
+ [0.50278934]
+ [0.82493606]]
+epoch 320 new labels [[0.82516203]
+ [0.10219838]
+ [0.42507215]
+ [0.86776798]
+ [0.58418196]
+ [0.50257963]
+ [0.82516203]]
+epoch 321 new labels [[0.82538704]
+ [0.1017593 ]
+ [0.42474907]
+ [0.86807008]
+ [0.58423973]
+ [0.50237038]
+ [0.82538704]]
+epoch 322 new labels [[0.8256111 ]
+ [0.1013227 ]
+ [0.42442639]
+ [0.86837097]
+ [0.58429782]
+ [0.50216158]
+ [0.8256111 ]]
+epoch 323 new labels [[0.82583422]
+ [0.10088856]
+ [0.42410413]
+ [0.86867063]
+ [0.58435622]
+ [0.50195324]
+ [0.82583422]]
+epoch 324 new labels [[0.82605639]
+ [0.10045685]
+ [0.42378228]
+ [0.86896909]
+ [0.58441492]
+ [0.50174534]
+ [0.82605639]]
+epoch 325 new labels [[0.82627763]
+ [0.10002758]
+ [0.42346084]
+ [0.86926636]
+ [0.58447393]
+ [0.50153789]
+ [0.82627763]]
+epoch 326 new labels [[0.82649793]
+ [0.0996007 ]
+ [0.42313982]
+ [0.86956243]
+ [0.58453323]
+ [0.50133088]
+ [0.82649793]]
+epoch 327 new labels [[0.82671731]
+ [0.09917622]
+ [0.42281921]
+ [0.86985731]
+ [0.58459284]
+ [0.50112431]
+ [0.82671731]]
+epoch 328 new labels [[0.82693577]
+ [0.09875411]
+ [0.42249902]
+ [0.87015102]
+ [0.58465274]
+ [0.50091816]
+ [0.82693577]]
+epoch 329 new labels [[0.82715332]
+ [0.09833436]
+ [0.42217924]
+ [0.87044356]
+ [0.58471293]
+ [0.50071245]
+ [0.82715332]]
+epoch 330 new labels [[0.82736995]
+ [0.09791695]
+ [0.42185987]
+ [0.87073493]
+ [0.58477342]
+ [0.50050716]
+ [0.82736995]]
+epoch 331 new labels [[0.82758568]
+ [0.09750186]
+ [0.42154092]
+ [0.87102516]
+ [0.5848342 ]
+ [0.5003023 ]
+ [0.82758568]]
+epoch 332 new labels [[0.82780051]
+ [0.09708907]
+ [0.42122239]
+ [0.87131423]
+ [0.58489526]
+ [0.50009785]
+ [0.82780051]]
+epoch 333 new labels [[0.82801445]
+ [0.09667857]
+ [0.42090427]
+ [0.87160216]
+ [0.58495661]
+ [0.49989382]
+ [0.82801445]]
+epoch 334 new labels [[0.8282275 ]
+ [0.09627035]
+ [0.42058656]
+ [0.87188895]
+ [0.58501824]
+ [0.49969019]
+ [0.8282275 ]]
+epoch 335 new labels [[0.82843966]
+ [0.09586439]
+ [0.42026927]
+ [0.87217462]
+ [0.58508015]
+ [0.49948697]
+ [0.82843966]]
+epoch 336 new labels [[0.82865095]
+ [0.09546066]
+ [0.41995239]
+ [0.87245917]
+ [0.58514234]
+ [0.49928416]
+ [0.82865095]]
+epoch 337 new labels [[0.82886136]
+ [0.09505917]
+ [0.41963593]
+ [0.87274261]
+ [0.58520481]
+ [0.49908175]
+ [0.82886136]]
+epoch 338 new labels [[0.8290709 ]
+ [0.09465988]
+ [0.41931988]
+ [0.87302494]
+ [0.58526755]
+ [0.49887973]
+ [0.8290709 ]]
+epoch 339 new labels [[0.82927958]
+ [0.09426279]
+ [0.41900425]
+ [0.87330616]
+ [0.58533056]
+ [0.49867811]
+ [0.82927958]]
+epoch 340 new labels [[0.8294874 ]
+ [0.09386788]
+ [0.41868904]
+ [0.8735863 ]
+ [0.58539384]
+ [0.49847688]
+ [0.8294874 ]]
+epoch 341 new labels [[0.82969436]
+ [0.09347513]
+ [0.41837424]
+ [0.87386535]
+ [0.58545739]
+ [0.49827603]
+ [0.82969436]]
+epoch 342 new labels [[0.82990048]
+ [0.09308453]
+ [0.41805985]
+ [0.87414331]
+ [0.58552121]
+ [0.49807557]
+ [0.82990048]]
+epoch 343 new labels [[0.83010575]
+ [0.09269607]
+ [0.41774588]
+ [0.87442021]
+ [0.58558529]
+ [0.49787549]
+ [0.83010575]]
+epoch 344 new labels [[0.83031018]
+ [0.09230972]
+ [0.41743233]
+ [0.87469603]
+ [0.58564963]
+ [0.49767578]
+ [0.83031018]]
+epoch 345 new labels [[0.83051378]
+ [0.09192548]
+ [0.41711919]
+ [0.8749708 ]
+ [0.58571424]
+ [0.49747645]
+ [0.83051378]]
+epoch 346 new labels [[0.83071654]
+ [0.09154333]
+ [0.41680647]
+ [0.87524451]
+ [0.5857791 ]
+ [0.49727749]
+ [0.83071654]]
+epoch 347 new labels [[0.83091848]
+ [0.09116326]
+ [0.41649417]
+ [0.87551717]
+ [0.58584422]
+ [0.49707889]
+ [0.83091848]]
+epoch 348 new labels [[0.8311196 ]
+ [0.09078524]
+ [0.41618228]
+ [0.8757888 ]
+ [0.58590959]
+ [0.49688066]
+ [0.8311196 ]]
+epoch 349 new labels [[0.8313199 ]
+ [0.09040928]
+ [0.4158708 ]
+ [0.87605938]
+ [0.58597521]
+ [0.49668279]
+ [0.8313199 ]]
+epoch 350 new labels [[0.83151939]
+ [0.09003534]
+ [0.41555975]
+ [0.87632894]
+ [0.58604109]
+ [0.49648528]
+ [0.83151939]]
+epoch 351 new labels [[0.83171807]
+ [0.08966343]
+ [0.4152491 ]
+ [0.87659747]
+ [0.58610722]
+ [0.49628813]
+ [0.83171807]]
+epoch 352 new labels [[0.83191595]
+ [0.08929352]
+ [0.41493888]
+ [0.87686499]
+ [0.58617359]
+ [0.49609133]
+ [0.83191595]]
+epoch 353 new labels [[0.83211303]
+ [0.0889256 ]
+ [0.41462907]
+ [0.87713149]
+ [0.5862402 ]
+ [0.49589487]
+ [0.83211303]]
+epoch 354 new labels [[0.83230931]
+ [0.08855966]
+ [0.41431968]
+ [0.87739699]
+ [0.58630707]
+ [0.49569877]
+ [0.83230931]]
+epoch 355 new labels [[0.83250481]
+ [0.08819569]
+ [0.4140107 ]
+ [0.87766149]
+ [0.58637417]
+ [0.49550301]
+ [0.83250481]]
+epoch 356 new labels [[0.83269952]
+ [0.08783366]
+ [0.41370214]
+ [0.877925  ]
+ [0.58644151]
+ [0.49530758]
+ [0.83269952]]
+epoch 357 new labels [[0.83289345]
+ [0.08747358]
+ [0.41339399]
+ [0.87818752]
+ [0.58650909]
+ [0.4951125 ]
+ [0.83289345]]
+epoch 358 new labels [[0.8330866 ]
+ [0.08711541]
+ [0.41308626]
+ [0.87844906]
+ [0.58657691]
+ [0.49491775]
+ [0.8330866 ]]
+epoch 359 new labels [[0.83327899]
+ [0.08675916]
+ [0.41277894]
+ [0.87870962]
+ [0.58664496]
+ [0.49472334]
+ [0.83327899]]
+epoch 360 new labels [[0.8334706 ]
+ [0.08640481]
+ [0.41247205]
+ [0.87896922]
+ [0.58671325]
+ [0.49452925]
+ [0.8334706 ]]
+epoch 361 new labels [[0.83366145]
+ [0.08605234]
+ [0.41216556]
+ [0.87922784]
+ [0.58678176]
+ [0.49433549]
+ [0.83366145]]
+epoch 362 new labels [[0.83385154]
+ [0.08570175]
+ [0.4118595 ]
+ [0.87948551]
+ [0.58685051]
+ [0.49414206]
+ [0.83385154]]
+epoch 363 new labels [[0.83404088]
+ [0.08535302]
+ [0.41155385]
+ [0.87974223]
+ [0.58691949]
+ [0.49394895]
+ [0.83404088]]
+epoch 364 new labels [[0.83422946]
+ [0.08500613]
+ [0.41124861]
+ [0.879998  ]
+ [0.58698869]
+ [0.49375615]
+ [0.83422946]]
+epoch 365 new labels [[0.8344173 ]
+ [0.08466108]
+ [0.41094379]
+ [0.88025283]
+ [0.58705811]
+ [0.49356368]
+ [0.8344173 ]]
+epoch 366 new labels [[0.83460439]
+ [0.08431785]
+ [0.41063939]
+ [0.88050672]
+ [0.58712776]
+ [0.49337151]
+ [0.83460439]]
+epoch 367 new labels [[0.83479075]
+ [0.08397643]
+ [0.4103354 ]
+ [0.88075967]
+ [0.58719764]
+ [0.49317966]
+ [0.83479075]]
+epoch 368 new labels [[0.83497637]
+ [0.08363681]
+ [0.41003182]
+ [0.88101171]
+ [0.58726773]
+ [0.49298812]
+ [0.83497637]]
+epoch 369 new labels [[0.83516126]
+ [0.08329898]
+ [0.40972866]
+ [0.88126282]
+ [0.58733804]
+ [0.49279689]
+ [0.83516126]]
+epoch 370 new labels [[0.83534543]
+ [0.08296292]
+ [0.40942592]
+ [0.88151302]
+ [0.58740857]
+ [0.49260596]
+ [0.83534543]]
+epoch 371 new labels [[0.83552887]
+ [0.08262863]
+ [0.40912359]
+ [0.88176231]
+ [0.58747931]
+ [0.49241533]
+ [0.83552887]]
+epoch 372 new labels [[0.8357116 ]
+ [0.08229608]
+ [0.40882168]
+ [0.88201069]
+ [0.58755027]
+ [0.492225  ]
+ [0.8357116 ]]
+epoch 373 new labels [[0.8358936 ]
+ [0.08196528]
+ [0.40852018]
+ [0.88225817]
+ [0.58762144]
+ [0.49203496]
+ [0.8358936 ]]
+epoch 374 new labels [[0.8360749 ]
+ [0.0816362 ]
+ [0.4082191 ]
+ [0.88250476]
+ [0.58769282]
+ [0.49184522]
+ [0.8360749 ]]
+epoch 375 new labels [[0.83625549]
+ [0.08130884]
+ [0.40791843]
+ [0.88275046]
+ [0.58776442]
+ [0.49165578]
+ [0.83625549]]
+epoch 376 new labels [[0.83643538]
+ [0.08098318]
+ [0.40761817]
+ [0.88299528]
+ [0.58783622]
+ [0.49146662]
+ [0.83643538]]
+epoch 377 new labels [[0.83661457]
+ [0.08065922]
+ [0.40731833]
+ [0.88323921]
+ [0.58790822]
+ [0.49127775]
+ [0.83661457]]
+epoch 378 new labels [[0.83679307]
+ [0.08033694]
+ [0.40701891]
+ [0.88348227]
+ [0.58798043]
+ [0.49108917]
+ [0.83679307]]
+epoch 379 new labels [[0.83697087]
+ [0.08001633]
+ [0.40671989]
+ [0.88372447]
+ [0.58805285]
+ [0.49090087]
+ [0.83697087]]
+epoch 380 new labels [[0.83714798]
+ [0.07969739]
+ [0.40642129]
+ [0.8839658 ]
+ [0.58812547]
+ [0.49071285]
+ [0.83714798]]
+epoch 381 new labels [[0.83732441]
+ [0.07938009]
+ [0.40612311]
+ [0.88420627]
+ [0.58819829]
+ [0.49052511]
+ [0.83732441]]
+epoch 382 new labels [[0.83750016]
+ [0.07906443]
+ [0.40582534]
+ [0.88444588]
+ [0.58827131]
+ [0.49033764]
+ [0.83750016]]
+epoch 383 new labels [[0.83767524]
+ [0.0787504 ]
+ [0.40552798]
+ [0.88468465]
+ [0.58834453]
+ [0.49015045]
+ [0.83767524]]
+epoch 384 new labels [[0.83784964]
+ [0.07843798]
+ [0.40523104]
+ [0.88492257]
+ [0.58841794]
+ [0.48996353]
+ [0.83784964]]
+epoch 385 new labels [[0.83802337]
+ [0.07812717]
+ [0.4049345 ]
+ [0.88515965]
+ [0.58849155]
+ [0.48977689]
+ [0.83802337]]
+epoch 386 new labels [[0.83819643]
+ [0.07781796]
+ [0.40463839]
+ [0.88539589]
+ [0.58856536]
+ [0.48959051]
+ [0.83819643]]
+epoch 387 new labels [[0.83836883]
+ [0.07751034]
+ [0.40434268]
+ [0.8856313 ]
+ [0.58863936]
+ [0.48940439]
+ [0.83836883]]
+epoch 388 new labels [[0.83854058]
+ [0.07720428]
+ [0.40404739]
+ [0.88586589]
+ [0.58871354]
+ [0.48921854]
+ [0.83854058]]
+epoch 389 new labels [[0.83871167]
+ [0.0768998 ]
+ [0.40375251]
+ [0.88609966]
+ [0.58878792]
+ [0.48903295]
+ [0.83871167]]
+epoch 390 new labels [[0.8388821 ]
+ [0.07659687]
+ [0.40345804]
+ [0.8863326 ]
+ [0.58886249]
+ [0.48884763]
+ [0.8388821 ]]
+epoch 391 new labels [[0.83905189]
+ [0.07629549]
+ [0.40316398]
+ [0.88656474]
+ [0.58893725]
+ [0.48866255]
+ [0.83905189]]
+epoch 392 new labels [[0.83922104]
+ [0.07599564]
+ [0.40287033]
+ [0.88679607]
+ [0.58901219]
+ [0.48847774]
+ [0.83922104]]
+epoch 393 new labels [[0.83938954]
+ [0.07569731]
+ [0.4025771 ]
+ [0.88702659]
+ [0.58908732]
+ [0.48829318]
+ [0.83938954]]
+epoch 394 new labels [[0.83955741]
+ [0.0754005 ]
+ [0.40228428]
+ [0.88725632]
+ [0.58916263]
+ [0.48810887]
+ [0.83955741]]
+epoch 395 new labels [[0.83972464]
+ [0.0751052 ]
+ [0.40199186]
+ [0.88748525]
+ [0.58923813]
+ [0.48792481]
+ [0.83972464]]
+epoch 396 new labels [[0.83989124]
+ [0.07481139]
+ [0.40169986]
+ [0.88771339]
+ [0.58931381]
+ [0.487741  ]
+ [0.83989124]]
+epoch 397 new labels [[0.84005721]
+ [0.07451907]
+ [0.40140827]
+ [0.88794074]
+ [0.58938966]
+ [0.48755744]
+ [0.84005721]]
+epoch 398 new labels [[0.84022256]
+ [0.07422822]
+ [0.40111709]
+ [0.88816732]
+ [0.5894657 ]
+ [0.48737411]
+ [0.84022256]]
+epoch 399 new labels [[0.84038729]
+ [0.07393885]
+ [0.40082632]
+ [0.88839311]
+ [0.58954191]
+ [0.48719104]
+ [0.84038729]]
+epoch 400 new labels [[0.8405514 ]
+ [0.07365093]
+ [0.40053596]
+ [0.88861813]
+ [0.5896183 ]
+ [0.4870082 ]
+ [0.8405514 ]]
+epoch 401 new labels [[0.84071489]
+ [0.07336446]
+ [0.40024601]
+ [0.88884239]
+ [0.58969487]
+ [0.4868256 ]
+ [0.84071489]]
+epoch 402 new labels [[0.84087778]
+ [0.07307943]
+ [0.39995647]
+ [0.88906587]
+ [0.58977161]
+ [0.48664324]
+ [0.84087778]]
+epoch 403 new labels [[0.84104005]
+ [0.07279582]
+ [0.39966733]
+ [0.8892886 ]
+ [0.58984852]
+ [0.48646112]
+ [0.84104005]]
+epoch 404 new labels [[0.84120172]
+ [0.07251364]
+ [0.39937861]
+ [0.88951057]
+ [0.58992561]
+ [0.48627922]
+ [0.84120172]]
+epoch 405 new labels [[0.84136279]
+ [0.07223288]
+ [0.39909029]
+ [0.88973179]
+ [0.59000286]
+ [0.48609756]
+ [0.84136279]]
+epoch 406 new labels [[0.84152327]
+ [0.07195351]
+ [0.39880238]
+ [0.88995226]
+ [0.59008029]
+ [0.48591613]
+ [0.84152327]]
+epoch 407 new labels [[0.84168314]
+ [0.07167554]
+ [0.39851488]
+ [0.89017198]
+ [0.59015788]
+ [0.48573493]
+ [0.84168314]]
+epoch 408 new labels [[0.84184243]
+ [0.07139896]
+ [0.39822779]
+ [0.89039097]
+ [0.59023564]
+ [0.48555396]
+ [0.84184243]]
+epoch 409 new labels [[0.84200112]
+ [0.07112375]
+ [0.39794111]
+ [0.89060922]
+ [0.59031357]
+ [0.48537321]
+ [0.84200112]]
+epoch 410 new labels [[0.84215923]
+ [0.07084991]
+ [0.39765483]
+ [0.89082673]
+ [0.59039166]
+ [0.48519268]
+ [0.84215923]]
+epoch 411 new labels [[0.84231676]
+ [0.07057743]
+ [0.39736896]
+ [0.89104352]
+ [0.59046992]
+ [0.48501238]
+ [0.84231676]]
+epoch 412 new labels [[0.84247371]
+ [0.0703063 ]
+ [0.39708349]
+ [0.89125958]
+ [0.59054834]
+ [0.48483229]
+ [0.84247371]]
+epoch 413 new labels [[0.84263008]
+ [0.07003651]
+ [0.39679843]
+ [0.89147493]
+ [0.59062692]
+ [0.48465243]
+ [0.84263008]]
+epoch 414 new labels [[0.84278588]
+ [0.06976806]
+ [0.39651378]
+ [0.89168955]
+ [0.59070566]
+ [0.48447278]
+ [0.84278588]]
+epoch 415 new labels [[0.8429411 ]
+ [0.06950093]
+ [0.39622953]
+ [0.89190346]
+ [0.59078457]
+ [0.48429335]
+ [0.8429411 ]]
+epoch 416 new labels [[0.84309576]
+ [0.06923512]
+ [0.39594569]
+ [0.89211666]
+ [0.59086363]
+ [0.48411413]
+ [0.84309576]]
+epoch 417 new labels [[0.84324986]
+ [0.06897062]
+ [0.39566225]
+ [0.89232916]
+ [0.59094284]
+ [0.48393512]
+ [0.84324986]]
+epoch 418 new labels [[0.84340339]
+ [0.06870742]
+ [0.39537922]
+ [0.89254095]
+ [0.59102222]
+ [0.48375632]
+ [0.84340339]]
+epoch 419 new labels [[0.84355636]
+ [0.06844552]
+ [0.39509659]
+ [0.89275205]
+ [0.59110175]
+ [0.48357774]
+ [0.84355636]]
+epoch 420 new labels [[0.84370878]
+ [0.06818489]
+ [0.39481436]
+ [0.89296245]
+ [0.59118143]
+ [0.48339936]
+ [0.84370878]]
+epoch 421 new labels [[0.84386065]
+ [0.06792555]
+ [0.39453254]
+ [0.89317216]
+ [0.59126127]
+ [0.48322118]
+ [0.84386065]]
+epoch 422 new labels [[0.84401196]
+ [0.06766747]
+ [0.39425112]
+ [0.89338118]
+ [0.59134126]
+ [0.48304322]
+ [0.84401196]]
+epoch 423 new labels [[0.84416273]
+ [0.06741066]
+ [0.39397011]
+ [0.89358952]
+ [0.5914214 ]
+ [0.48286545]
+ [0.84416273]]
+epoch 424 new labels [[0.84431295]
+ [0.0671551 ]
+ [0.39368949]
+ [0.89379718]
+ [0.5915017 ]
+ [0.48268789]
+ [0.84431295]]
+epoch 425 new labels [[0.84446263]
+ [0.06690078]
+ [0.39340928]
+ [0.89400416]
+ [0.59158214]
+ [0.48251053]
+ [0.84446263]]
+epoch 426 new labels [[0.84461177]
+ [0.06664771]
+ [0.39312947]
+ [0.89421047]
+ [0.59166273]
+ [0.48233336]
+ [0.84461177]]
+epoch 427 new labels [[0.84476038]
+ [0.06639586]
+ [0.39285006]
+ [0.89441611]
+ [0.59174346]
+ [0.4821564 ]
+ [0.84476038]]
+epoch 428 new labels [[0.84490845]
+ [0.06614523]
+ [0.39257105]
+ [0.89462108]
+ [0.59182435]
+ [0.48197963]
+ [0.84490845]]
+epoch 429 new labels [[0.84505599]
+ [0.06589583]
+ [0.39229244]
+ [0.8948254 ]
+ [0.59190538]
+ [0.48180305]
+ [0.84505599]]
+epoch 430 new labels [[0.84520301]
+ [0.06564763]
+ [0.39201424]
+ [0.89502905]
+ [0.59198655]
+ [0.48162667]
+ [0.84520301]]
+epoch 431 new labels [[0.84534949]
+ [0.06540062]
+ [0.39173643]
+ [0.89523204]
+ [0.59206787]
+ [0.48145048]
+ [0.84534949]]
+epoch 432 new labels [[0.84549546]
+ [0.06515482]
+ [0.39145902]
+ [0.89543438]
+ [0.59214933]
+ [0.48127448]
+ [0.84549546]]
+epoch 433 new labels [[0.84564091]
+ [0.0649102 ]
+ [0.39118201]
+ [0.89563608]
+ [0.59223093]
+ [0.48109868]
+ [0.84564091]]
+epoch 434 new labels [[0.84578583]
+ [0.06466675]
+ [0.3909054 ]
+ [0.89583712]
+ [0.59231267]
+ [0.48092306]
+ [0.84578583]]
+epoch 435 new labels [[0.84593025]
+ [0.06442448]
+ [0.39062919]
+ [0.89603753]
+ [0.59239455]
+ [0.48074762]
+ [0.84593025]]
+epoch 436 new labels [[0.84607415]
+ [0.06418338]
+ [0.39035337]
+ [0.89623729]
+ [0.59247657]
+ [0.48057237]
+ [0.84607415]]
+epoch 437 new labels [[0.84621754]
+ [0.06394343]
+ [0.39007796]
+ [0.89643642]
+ [0.59255873]
+ [0.48039731]
+ [0.84621754]]
+epoch 438 new labels [[0.84636043]
+ [0.06370463]
+ [0.38980294]
+ [0.89663492]
+ [0.59264102]
+ [0.48022243]
+ [0.84636043]]
+epoch 439 new labels [[0.84650281]
+ [0.06346697]
+ [0.38952831]
+ [0.89683278]
+ [0.59272346]
+ [0.48004773]
+ [0.84650281]]
+epoch 440 new labels [[0.84664469]
+ [0.06323045]
+ [0.38925408]
+ [0.89703002]
+ [0.59280602]
+ [0.47987321]
+ [0.84664469]]
+epoch 441 new labels [[0.84678607]
+ [0.06299506]
+ [0.38898025]
+ [0.89722664]
+ [0.59288872]
+ [0.47969887]
+ [0.84678607]]
+epoch 442 new labels [[0.84692696]
+ [0.0627608 ]
+ [0.38870682]
+ [0.89742263]
+ [0.59297156]
+ [0.47952471]
+ [0.84692696]]
+epoch 443 new labels [[0.84706735]
+ [0.06252765]
+ [0.38843378]
+ [0.89761801]
+ [0.59305452]
+ [0.47935073]
+ [0.84706735]]
+epoch 444 new labels [[0.84720725]
+ [0.06229561]
+ [0.38816113]
+ [0.89781278]
+ [0.59313762]
+ [0.47917692]
+ [0.84720725]]
+epoch 445 new labels [[0.84734666]
+ [0.06206467]
+ [0.38788888]
+ [0.89800693]
+ [0.59322085]
+ [0.47900329]
+ [0.84734666]]
+epoch 446 new labels [[0.84748558]
+ [0.06183483]
+ [0.38761702]
+ [0.89820048]
+ [0.59330421]
+ [0.47882983]
+ [0.84748558]]
+epoch 447 new labels [[0.84762402]
+ [0.06160607]
+ [0.38734555]
+ [0.89839342]
+ [0.5933877 ]
+ [0.47865654]
+ [0.84762402]]
+epoch 448 new labels [[0.84776198]
+ [0.0613784 ]
+ [0.38707448]
+ [0.89858576]
+ [0.59347132]
+ [0.47848342]
+ [0.84776198]]
+epoch 449 new labels [[0.84789946]
+ [0.06115181]
+ [0.3868038 ]
+ [0.8987775 ]
+ [0.59355506]
+ [0.47831048]
+ [0.84789946]]
+epoch 450 new labels [[0.84803646]
+ [0.06092629]
+ [0.38653351]
+ [0.89896864]
+ [0.59363893]
+ [0.4781377 ]
+ [0.84803646]]
+epoch 451 new labels [[0.84817299]
+ [0.06070183]
+ [0.38626361]
+ [0.89915919]
+ [0.59372293]
+ [0.47796509]
+ [0.84817299]]
+epoch 452 new labels [[0.84830904]
+ [0.06047843]
+ [0.38599411]
+ [0.89934915]
+ [0.59380705]
+ [0.47779264]
+ [0.84830904]]
+epoch 453 new labels [[0.84844463]
+ [0.06025607]
+ [0.38572499]
+ [0.89953853]
+ [0.59389129]
+ [0.47762037]
+ [0.84844463]]
+epoch 454 new labels [[0.84857975]
+ [0.06003477]
+ [0.38545627]
+ [0.89972732]
+ [0.59397566]
+ [0.47744825]
+ [0.84857975]]
+epoch 455 new labels [[0.8487144 ]
+ [0.0598145 ]
+ [0.38518793]
+ [0.89991553]
+ [0.59406015]
+ [0.4772763 ]
+ [0.8487144 ]]
+epoch 456 new labels [[0.84884859]
+ [0.05959527]
+ [0.38491999]
+ [0.90010316]
+ [0.59414476]
+ [0.47710451]
+ [0.84884859]]
+epoch 457 new labels [[0.84898232]
+ [0.05937706]
+ [0.38465243]
+ [0.90029021]
+ [0.5942295 ]
+ [0.47693289]
+ [0.84898232]]
+epoch 458 new labels [[0.84911559]
+ [0.05915987]
+ [0.38438526]
+ [0.90047669]
+ [0.59431435]
+ [0.47676142]
+ [0.84911559]]
+epoch 459 new labels [[0.84924841]
+ [0.0589437 ]
+ [0.38411848]
+ [0.9006626 ]
+ [0.59439932]
+ [0.47659011]
+ [0.84924841]]
+epoch 460 new labels [[0.84938077]
+ [0.05872853]
+ [0.38385209]
+ [0.90084795]
+ [0.59448441]
+ [0.47641896]
+ [0.84938077]]
+epoch 461 new labels [[0.84951268]
+ [0.05851437]
+ [0.38358608]
+ [0.90103273]
+ [0.59456962]
+ [0.47624797]
+ [0.84951268]]
+epoch 462 new labels [[0.84964414]
+ [0.05830121]
+ [0.38332046]
+ [0.90121694]
+ [0.59465495]
+ [0.47607714]
+ [0.84964414]]
+epoch 463 new labels [[0.84977515]
+ [0.05808903]
+ [0.38305523]
+ [0.9014006 ]
+ [0.59474039]
+ [0.47590645]
+ [0.84977515]]
+epoch 464 new labels [[0.84990572]
+ [0.05787784]
+ [0.38279038]
+ [0.90158371]
+ [0.59482594]
+ [0.47573593]
+ [0.84990572]]
+epoch 465 new labels [[0.85003585]
+ [0.05766763]
+ [0.38252591]
+ [0.90176625]
+ [0.59491162]
+ [0.47556555]
+ [0.85003585]]
+epoch 466 new labels [[0.85016554]
+ [0.0574584 ]
+ [0.38226183]
+ [0.90194825]
+ [0.5949974 ]
+ [0.47539533]
+ [0.85016554]]
+epoch 467 new labels [[0.85029479]
+ [0.05725013]
+ [0.38199814]
+ [0.9021297 ]
+ [0.5950833 ]
+ [0.47522526]
+ [0.85029479]]
+epoch 468 new labels [[0.8504236 ]
+ [0.05704282]
+ [0.38173483]
+ [0.9023106 ]
+ [0.59516931]
+ [0.47505534]
+ [0.8504236 ]]
+epoch 469 new labels [[0.85055198]
+ [0.05683648]
+ [0.3814719 ]
+ [0.90249096]
+ [0.59525543]
+ [0.47488557]
+ [0.85055198]]
+epoch 470 new labels [[0.85067993]
+ [0.05663108]
+ [0.38120935]
+ [0.90267078]
+ [0.59534166]
+ [0.47471595]
+ [0.85067993]]
+epoch 471 new labels [[0.85080745]
+ [0.05642663]
+ [0.38094719]
+ [0.90285007]
+ [0.595428  ]
+ [0.47454648]
+ [0.85080745]]
+epoch 472 new labels [[0.85093454]
+ [0.05622311]
+ [0.38068541]
+ [0.90302881]
+ [0.59551446]
+ [0.47437715]
+ [0.85093454]]
+epoch 473 new labels [[0.8510612 ]
+ [0.05602054]
+ [0.38042401]
+ [0.90320703]
+ [0.59560102]
+ [0.47420797]
+ [0.8510612 ]]
+epoch 474 new labels [[0.85118744]
+ [0.05581889]
+ [0.38016299]
+ [0.90338471]
+ [0.59568768]
+ [0.47403893]
+ [0.85118744]]
+epoch 475 new labels [[0.85131326]
+ [0.05561816]
+ [0.37990235]
+ [0.90356186]
+ [0.59577446]
+ [0.47387004]
+ [0.85131326]]
+epoch 476 new labels [[0.85143866]
+ [0.05541836]
+ [0.37964209]
+ [0.90373849]
+ [0.59586134]
+ [0.47370129]
+ [0.85143866]]
+epoch 477 new labels [[0.85156365]
+ [0.05521947]
+ [0.37938221]
+ [0.9039146 ]
+ [0.59594833]
+ [0.47353268]
+ [0.85156365]]
+epoch 478 new labels [[0.85168822]
+ [0.05502148]
+ [0.3791227 ]
+ [0.90409019]
+ [0.59603542]
+ [0.47336422]
+ [0.85168822]]
+epoch 479 new labels [[0.85181237]
+ [0.0548244 ]
+ [0.37886358]
+ [0.90426525]
+ [0.59612262]
+ [0.47319589]
+ [0.85181237]]
+epoch 480 new labels [[0.85193612]
+ [0.05462822]
+ [0.37860483]
+ [0.90443981]
+ [0.59620992]
+ [0.47302771]
+ [0.85193612]]
+epoch 481 new labels [[0.85205945]
+ [0.05443293]
+ [0.37834646]
+ [0.90461385]
+ [0.59629732]
+ [0.47285966]
+ [0.85205945]]
+epoch 482 new labels [[0.85218238]
+ [0.05423853]
+ [0.37808847]
+ [0.90478738]
+ [0.59638483]
+ [0.47269175]
+ [0.85218238]]
+epoch 483 new labels [[0.85230491]
+ [0.05404501]
+ [0.37783085]
+ [0.9049604 ]
+ [0.59647244]
+ [0.47252398]
+ [0.85230491]]
+epoch 484 new labels [[0.85242703]
+ [0.05385237]
+ [0.37757361]
+ [0.90513291]
+ [0.59656014]
+ [0.47235634]
+ [0.85242703]]
+epoch 485 new labels [[0.85254874]
+ [0.0536606 ]
+ [0.37731675]
+ [0.90530492]
+ [0.59664795]
+ [0.47218884]
+ [0.85254874]]
+epoch 486 new labels [[0.85267006]
+ [0.05346969]
+ [0.37706025]
+ [0.90547643]
+ [0.59673586]
+ [0.47202148]
+ [0.85267006]]
+epoch 487 new labels [[0.85279099]
+ [0.05327965]
+ [0.37680414]
+ [0.90564744]
+ [0.59682387]
+ [0.47185425]
+ [0.85279099]]
+epoch 488 new labels [[0.85291151]
+ [0.05309047]
+ [0.37654839]
+ [0.90581796]
+ [0.59691197]
+ [0.47168715]
+ [0.85291151]]
+epoch 489 new labels [[0.85303165]
+ [0.05290214]
+ [0.37629302]
+ [0.90598798]
+ [0.59700017]
+ [0.47152018]
+ [0.85303165]]
+epoch 490 new labels [[0.85315139]
+ [0.05271466]
+ [0.37603802]
+ [0.9061575 ]
+ [0.59708847]
+ [0.47135335]
+ [0.85315139]]
+epoch 491 new labels [[0.85327074]
+ [0.05252802]
+ [0.3757834 ]
+ [0.90632654]
+ [0.59717687]
+ [0.47118665]
+ [0.85327074]]
+epoch 492 new labels [[0.8533897 ]
+ [0.05234222]
+ [0.37552914]
+ [0.90649509]
+ [0.59726536]
+ [0.47102007]
+ [0.8533897 ]]
+epoch 493 new labels [[0.85350828]
+ [0.05215726]
+ [0.37527526]
+ [0.90666315]
+ [0.59735394]
+ [0.47085363]
+ [0.85350828]]
+epoch 494 new labels [[0.85362647]
+ [0.05197312]
+ [0.37502174]
+ [0.90683074]
+ [0.59744262]
+ [0.47068732]
+ [0.85362647]]
+epoch 495 new labels [[0.85374429]
+ [0.05178981]
+ [0.3747686 ]
+ [0.90699784]
+ [0.5975314 ]
+ [0.47052113]
+ [0.85374429]]
+epoch 496 new labels [[0.85386172]
+ [0.05160732]
+ [0.37451582]
+ [0.90716446]
+ [0.59762027]
+ [0.47035507]
+ [0.85386172]]
+epoch 497 new labels [[0.85397877]
+ [0.05142564]
+ [0.37426341]
+ [0.9073306 ]
+ [0.59770922]
+ [0.47018914]
+ [0.85397877]]
+epoch 498 new labels [[0.85409544]
+ [0.05124478]
+ [0.37401138]
+ [0.90749627]
+ [0.59779828]
+ [0.47002333]
+ [0.85409544]]
+epoch 499 new labels [[0.85421174]
+ [0.05106472]
+ [0.37375971]
+ [0.90766147]
+ [0.59788742]
+ [0.46985765]
+ [0.85421174]]
+[1 0 0 1 1 0 1]
+[[ 0.51842198]
+ [ 2.80457187]
+ [-1.89033547]]
+[-1.03561685]
+0.10865444554648968
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con esos nuevos pesos determinamos los resultados de salida de nuestro perceptron con esos pesos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 0, 1, 1, 1, 0, 0],
+       [1, 0, 0, 1, 1, 1, 1],
+       [0, 1, 0, 0, 1, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_set</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0],
+       [0, 0, 1],
+       [1, 0, 0],
+       [1, 1, 0],
+       [1, 1, 1],
+       [0, 1, 1],
+       [0, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">single_pt</span> <span class="o">=</span> <span class="n">input_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">single_pt</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">salida</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="n">r</span>
+<span class="p">[</span><span class="n">salida</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([0.85432767]), array([0.05088546]), array([0.3735084]), array([0.9078262]), array([0.59797665]), array([0.46969209]), array([0.85432767])]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0, 0, 1, 1, 0, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Que efectivamente es igual a los resultados deseados:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0, 1, 1, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">salida</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Izainea/usta_redes_neuronales",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción al Curso de Redes Neuronales Profundas</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planteamiento-del-problema">Planteamiento del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-perceptron">¿Qué es un perceptrón?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ahora-sin-trampa-como-logramos-esos-pesos-deseados">Ahora sin trampa, como logramos esos pesos deseados</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea [izainea]
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
