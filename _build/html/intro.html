@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>📊 Introducción al Curso de Estadística 1 &#8212; Estadística 1</title>
+    <title>Introducción al Curso de Redes Neuronales Profundas &#8212; Estadística 1</title>
   
   
   
@@ -60,10 +60,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="📊 Introducción a la Estadística" href="estadistica_1.html" />
+    <link rel="next" title="Introducción al Perceptrón" href="redes_neuronales_1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,12 +167,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    📊 Introducción al Curso de Estadística 1
+                    Introducción al Curso de Redes Neuronales Profundas
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="estadistica_1.html">📊 <strong>Introducción a la Estadística</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="redes_neuronales_1.html">Introducción al Perceptrón</a></li>
 </ul>
 
     </div>
@@ -230,7 +232,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/Izainea/estadistica/main?urlpath=tree/intro.md" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/Izainea/usta_redes_neuronales/main?urlpath=tree/intro.md" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -248,7 +250,7 @@
       
       
       
-      <li><a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/Izainea/estadistica&urlpath=tree/estadistica/intro.md&branch=main" target="_blank"
+      <li><a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/Izainea/usta_redes_neuronales&urlpath=tree/usta_redes_neuronales/intro.md&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +268,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/Izainea/estadistica/blob/main/intro.md" target="_blank"
+      <li><a href="https://colab.research.google.com/github/Izainea/usta_redes_neuronales/blob/main/intro.md" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +317,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/estadistica" target="_blank"
+      <li><a href="https://github.com/Izainea/usta_redes_neuronales" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +334,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/estadistica/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Izainea/usta_redes_neuronales/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -455,7 +457,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>📊 Introducción al Curso de Estadística 1</h1>
+    <h1>Introducción al Curso de Redes Neuronales Profundas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -465,10 +467,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-del-curso">📌 Objetivos del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">📖 Contenido del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia">🏆 Metodología</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#material-de-apoyo">📚 Material de Apoyo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">Contenido del Curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-1-introduccion-a-redes-neuronales"><strong>Unidad 1: Introducción a Redes Neuronales</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-2-regularizacion-en-redes-neuronales"><strong>Unidad 2: Regularización en Redes Neuronales</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-3-optimizacion-en-redes-profundas"><strong>Unidad 3: Optimización en Redes Profundas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-4-redes-convolucionales-cnns"><strong>Unidad 4: Redes Convolucionales (CNNs)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias"><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-6-modelos-de-representacion-y-autoencoders"><strong>Unidad 6: Modelos de Representación y Autoencoders</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-7-metodos-probabilisticos-y-generativos"><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning"><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
         </div>
@@ -480,111 +489,107 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-curso-de-estadistica-1">
-<h1>📊 Introducción al Curso de Estadística 1<a class="headerlink" href="#introduccion-al-curso-de-estadistica-1" title="Link to this heading">#</a></h1>
-<div class="tip admonition">
-<p class="admonition-title">📢 ¡Bienvenido al curso!</p>
-<p>Este curso está diseñado para proporcionar las herramientas esenciales en el análisis de datos y la toma de decisiones basada en estadísticas aplicadas a la administración y economía.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-curso-de-redes-neuronales-profundas">
+<h1>Introducción al Curso de Redes Neuronales Profundas<a class="headerlink" href="#introduccion-al-curso-de-redes-neuronales-profundas" title="Link to this heading">#</a></h1>
+<div class="admonition-objetivo-del-curso admonition">
+<p class="admonition-title">Objetivo del Curso</p>
+<p>Este curso proporciona una comprensión profunda de las redes neuronales, desde sus fundamentos hasta sus aplicaciones avanzadas. Exploraremos cómo diseñar, entrenar e implementar redes neuronales utilizando herramientas modernas como TensorFlow y Keras.</p>
 </div>
-<section id="objetivos-del-curso">
-<h2>📌 Objetivos del Curso<a class="headerlink" href="#objetivos-del-curso" title="Link to this heading">#</a></h2>
-<p>En este curso, aprenderás a:</p>
-<ul class="simple">
-<li><p>📊 <strong>Comprender</strong> los fundamentos de la estadística y su aplicación en problemas reales.</p></li>
-<li><p>🔢 <strong>Manejar y analizar</strong> datos utilizando métodos estadísticos clave.</p></li>
-<li><p>📈 <strong>Visualizar información</strong> mediante herramientas gráficas efectivas.</p></li>
-<li><p>📉 <strong>Aplicar conceptos de probabilidad</strong> para evaluar incertidumbres en la toma de decisiones.</p></li>
-<li><p>🖥️ <strong>Utilizar software estadístico</strong> como Excel y herramientas avanzadas para cálculos y análisis.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Este curso enfatiza la aplicación práctica de la estadística en contextos empresariales y de políticas públicas.</p>
-</div>
-</section>
 <section id="contenido-del-curso">
-<h2>📖 Contenido del Curso<a class="headerlink" href="#contenido-del-curso" title="Link to this heading">#</a></h2>
-<p>El curso se divide en módulos que cubren los siguientes temas:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="tabla-temas">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">📝 Temas Principales</span><a class="headerlink" href="#tabla-temas" title="Link to this table">#</a></caption>
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 75.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>📌 <strong>Unidad</strong></p></th>
-<th class="head"><p>📚 <strong>Contenido</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>📊 Fundamentos de la Estadística</p></td>
-<td><p>Conceptos básicos, tipos de datos y fuentes de información.</p></td>
-</tr>
-<tr class="row-odd"><td><p>📈 Estadística Descriptiva</p></td>
-<td><p>Métodos tabulares y gráficos para representar datos.</p></td>
-</tr>
-<tr class="row-even"><td><p>📉 Medidas de Tendencia Central y Dispersión</p></td>
-<td><p>Media, mediana, moda, varianza y desviación estándar.</p></td>
-</tr>
-<tr class="row-odd"><td><p>🎲 Probabilidad y Distribuciones</p></td>
-<td><p>Conceptos de probabilidad y modelos probabilísticos aplicados.</p></td>
-</tr>
-<tr class="row-even"><td><p>📊 Inferencia Estadística</p></td>
-<td><p>Estimaciones, pruebas de hipótesis y análisis de regresión.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Para cada unidad, se realizarán ejercicios prácticos utilizando conjuntos de datos reales.</p>
-</div>
+<h2>Contenido del Curso<a class="headerlink" href="#contenido-del-curso" title="Link to this heading">#</a></h2>
 </section>
-<section id="metodologia">
-<h2>🏆 Metodología<a class="headerlink" href="#metodologia" title="Link to this heading">#</a></h2>
-<p>El curso se desarrollará a través de:</p>
+<section id="unidad-1-introduccion-a-redes-neuronales">
+<h2><strong>Unidad 1: Introducción a Redes Neuronales</strong><a class="headerlink" href="#unidad-1-introduccion-a-redes-neuronales" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>🎤 <strong>Clases interactivas</strong> con discusión de casos reales.</p></li>
-<li><p>🏗️ <strong>Ejercicios prácticos</strong> con problemas aplicados en administración y economía.</p></li>
-<li><p>🖥️ <strong>Uso de software estadístico</strong> para realizar análisis de datos en tiempo real.</p></li>
-<li><p>📚 <strong>Proyectos colaborativos</strong> para reforzar los conceptos vistos en clase.</p></li>
+<li><p>Conceptos básicos: Definición y aplicaciones.</p></li>
+<li><p>Perceptrón multicapa (MLP).</p></li>
+<li><p>Funciones de activación y capas ocultas.</p></li>
+<li><p>Comparación con modelos lineales y no lineales.</p></li>
+<li><p>Implementación en TensorFlow/Keras.</p></li>
 </ul>
 </section>
-<section id="material-de-apoyo">
-<h2>📚 Material de Apoyo<a class="headerlink" href="#material-de-apoyo" title="Link to this heading">#</a></h2>
-<p>Los estudiantes contarán con material complementario, incluyendo:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="tabla-bibliografia">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">📘 Bibliografía Recomendada</span><a class="headerlink" href="#tabla-bibliografia" title="Link to this table">#</a></caption>
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 75.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>📖 <strong>Libro</strong></p></th>
-<th class="head"><p>📌 <strong>Referencia</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>📊 Estadística para Administración y Economía</p></td>
-<td><p>Anderson, Sweeney y Williams, 10ª edición.</p></td>
-</tr>
-<tr class="row-odd"><td><p>📉 Fundamentos de Estadística</p></td>
-<td><p>Walpole, Myers, Myers y Ye.</p></td>
-</tr>
-<tr class="row-even"><td><p>🖥️ Análisis de Datos con R</p></td>
-<td><p>Wickham y Grolemund.</p></td>
-</tr>
-</tbody>
-</table>
+<section id="unidad-2-regularizacion-en-redes-neuronales">
+<h2><strong>Unidad 2: Regularización en Redes Neuronales</strong><a class="headerlink" href="#unidad-2-regularizacion-en-redes-neuronales" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Sobreajuste y subajuste.</p></li>
+<li><p>Regularización L1 y L2.</p></li>
+<li><p>Dropout y Batch Normalization.</p></li>
+<li><p>Data augmentation.</p></li>
+<li><p>Ejemplo práctico en Keras.</p></li>
+</ul>
+</section>
+<section id="unidad-3-optimizacion-en-redes-profundas">
+<h2><strong>Unidad 3: Optimización en Redes Profundas</strong><a class="headerlink" href="#unidad-3-optimizacion-en-redes-profundas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Descenso de gradiente y variantes (SGD, Adam, RMSprop).</p></li>
+<li><p>Backpropagation y cálculo del gradiente.</p></li>
+<li><p>Funciones de costo y ajuste de hiperparámetros.</p></li>
+<li><p>Problemas de optimización: desvanecimiento y explosión del gradiente.</p></li>
+</ul>
+</section>
+<section id="unidad-4-redes-convolucionales-cnns">
+<h2><strong>Unidad 4: Redes Convolucionales (CNNs)</strong><a class="headerlink" href="#unidad-4-redes-convolucionales-cnns" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Operaciones convolucionales y capas de pooling.</p></li>
+<li><p>Arquitecturas populares (LeNet, AlexNet, VGG, ResNet).</p></li>
+<li><p>Aplicaciones en visión por computadora.</p></li>
+<li><p>Implementación de una CNN en TensorFlow/Keras.</p></li>
+</ul>
+</section>
+<section id="unidad-5-redes-recurrentes-y-modelado-de-secuencias">
+<h2><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong><a class="headerlink" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>RNNs, LSTMs y GRUs.</p></li>
+<li><p>Aplicaciones en series temporales y NLP.</p></li>
+<li><p>Problemas de largo plazo: desvanecimiento del gradiente.</p></li>
+<li><p>Implementación de una RNN para clasificación de texto.</p></li>
+</ul>
+</section>
+<section id="unidad-6-modelos-de-representacion-y-autoencoders">
+<h2><strong>Unidad 6: Modelos de Representación y Autoencoders</strong><a class="headerlink" href="#unidad-6-modelos-de-representacion-y-autoencoders" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Redes autoencoder (AE) y variacionales (VAE).</p></li>
+<li><p>Aprendizaje de representaciones y embeddings.</p></li>
+<li><p>Aplicaciones en reducción de dimensionalidad y generación de datos.</p></li>
+<li><p>Implementación de un autoencoder en TensorFlow/Keras.</p></li>
+</ul>
+</section>
+<section id="unidad-7-metodos-probabilisticos-y-generativos">
+<h2><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong><a class="headerlink" href="#unidad-7-metodos-probabilisticos-y-generativos" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Modelos gráficos probabilísticos en deep learning.</p></li>
+<li><p>Métodos Monte Carlo para inferencia aproximada.</p></li>
+<li><p>Modelos generativos: GANs y VAEs.</p></li>
+<li><p>Implementación de una GAN en TensorFlow/Keras.</p></li>
+</ul>
+</section>
+<section id="unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning">
+<h2><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong><a class="headerlink" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Transfer learning y fine-tuning.</p></li>
+<li><p>Modelos Transformers y aplicaciones en NLP.</p></li>
+<li><p>Técnicas avanzadas de optimización e inferencia.</p></li>
+<li><p>Ética en Inteligencia Artificial.</p></li>
+<li><p>Implementación de un Transformer básico con Hugging Face.</p></li>
+</ul>
+</section>
+<section id="evaluacion">
+<h2>Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h2>
+<div class="admonition-criterios-de-evaluacion admonition">
+<p class="admonition-title">Criterios de Evaluación</p>
+<ul class="simple">
+<li><p><strong>Ejercicios prácticos</strong>: Implementación de redes neuronales en Keras.</p></li>
+<li><p><strong>Proyectos finales</strong>: Aplicaciones en visión por computadora, NLP o modelos generativos.</p></li>
+<li><p><strong>Análisis de papers</strong>: Avances recientes en deep learning.</p></li>
+</ul>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Las lecturas recomendadas se complementarán con artículos, casos de estudio y guías prácticas.</p>
-</div>
-<hr class="docutils" />
-<div class="attention admonition">
-<p class="admonition-title">🚀 ¡Manos a la obra!</p>
-<p>Este curso te brindará herramientas esenciales para convertirte en un analista de datos competente. 📊🔍 ¡Aprovecha al máximo esta oportunidad!</p>
-</div>
+</section>
+<section id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press.</p></li>
+<li><p>Chollet, F. (2017). <em>Deep Learning with Python</em>. Manning Publications.</p></li>
+</ol>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -594,7 +599,7 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "Izainea/estadistica",
+            repo: "Izainea/usta_redes_neuronales",
             ref: "main",
         },
         codeMirrorConfig: {
@@ -621,11 +626,11 @@
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="estadistica_1.html"
+       href="redes_neuronales_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">📊 <strong>Introducción a la Estadística</strong></p>
+        <p class="prev-next-title">Introducción al Perceptrón</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -646,10 +651,17 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-del-curso">📌 Objetivos del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">📖 Contenido del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia">🏆 Metodología</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#material-de-apoyo">📚 Material de Apoyo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">Contenido del Curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-1-introduccion-a-redes-neuronales"><strong>Unidad 1: Introducción a Redes Neuronales</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-2-regularizacion-en-redes-neuronales"><strong>Unidad 2: Regularización en Redes Neuronales</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-3-optimizacion-en-redes-profundas"><strong>Unidad 3: Optimización en Redes Profundas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-4-redes-convolucionales-cnns"><strong>Unidad 4: Redes Convolucionales (CNNs)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias"><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-6-modelos-de-representacion-y-autoencoders"><strong>Unidad 6: Modelos de Representación y Autoencoders</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-7-metodos-probabilisticos-y-generativos"><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning"><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>
 

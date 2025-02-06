@@ -4,4 +4,4 @@
 format: jb-book
 root: intro
 chapters:
-- file: estadistica_1
+- file: redes_neuronales_1
