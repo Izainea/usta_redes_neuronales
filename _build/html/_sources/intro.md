@@ -84,4 +84,4 @@ Este curso proporciona una comprensión profunda de las redes neuronales, desde 
 
 1. Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
 2. Chollet, F. (2017). *Deep Learning with Python*. Manning Publications.
-
+3. Notas de clase generadas con una gran ayuda de ChatGPT.
