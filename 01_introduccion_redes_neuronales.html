@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introducción al Curso de Redes Neuronales Profundas &#8212; Estadística 1</title>
+    <title>Introducción a las Redes Neuronales &#8212; Estadística 1</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_introduccion_redes_neuronales';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introducción al Perceptrón" href="redes_neuronales_1.html" />
+    <link rel="next" title="Modelo Matemático de la Neurona y Funciones de Activación" href="02_modelo_neurona_funciones_activacion.html" />
+    <link rel="prev" title="Introducción al Perceptrón" href="redes_neuronales_1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,15 +164,15 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Introducción al Curso de Redes Neuronales Profundas
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="redes_neuronales_1.html">Introducción al Perceptrón</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_introduccion_redes_neuronales.html">Introducción a las Redes Neuronales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción a las Redes Neuronales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_modelo_neurona_funciones_activacion.html">Modelo Matemático de la Neurona y Funciones de Activación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_algoritmo_perceptron_gradiente_descendente.html">El Algoritmo del Perceptrón y su Relación con el Entrenamiento</a></li>
 </ul>
@@ -235,7 +234,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/Izainea/usta_redes_neuronales/main?urlpath=tree/intro.md" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/Izainea/usta_redes_neuronales/main?urlpath=tree/01_introduccion_redes_neuronales.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -253,7 +252,7 @@
       
       
       
-      <li><a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/Izainea/usta_redes_neuronales&urlpath=tree/usta_redes_neuronales/intro.md&branch=main" target="_blank"
+      <li><a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/Izainea/usta_redes_neuronales&urlpath=tree/usta_redes_neuronales/01_introduccion_redes_neuronales.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -271,7 +270,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/Izainea/usta_redes_neuronales/blob/main/intro.md" target="_blank"
+      <li><a href="https://colab.research.google.com/github/Izainea/usta_redes_neuronales/blob/main/01_introduccion_redes_neuronales.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -337,7 +336,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/usta_redes_neuronales/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Izainea/usta_redes_neuronales/issues/new?title=Issue%20on%20page%20%2F01_introduccion_redes_neuronales.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,24 +366,7 @@
       
       
       
-      <li><a href="_sources/intro.ipynb" target="_blank"
-   class="btn btn-sm btn-download-notebook-button dropdown-item"
-   title="Download notebook file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/01_introduccion_redes_neuronales.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -394,7 +376,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -460,7 +442,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introducción al Curso de Redes Neuronales Profundas</h1>
+    <h1>Introducción a las Redes Neuronales</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -470,17 +452,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">Contenido del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-1-introduccion-a-redes-neuronales"><strong>Unidad 1: Introducción a Redes Neuronales</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-2-regularizacion-en-redes-neuronales"><strong>Unidad 2: Regularización en Redes Neuronales</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-3-optimizacion-en-redes-profundas"><strong>Unidad 3: Optimización en Redes Profundas</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-4-redes-convolucionales-cnns"><strong>Unidad 4: Redes Convolucionales (CNNs)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias"><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-6-modelos-de-representacion-y-autoencoders"><strong>Unidad 6: Modelos de Representación y Autoencoders</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-7-metodos-probabilisticos-y-generativos"><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning"><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspiracion-biologica-y-definicion-de-neuronas-artificiales">Inspiración Biológica y Definición de Neuronas Artificiales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-una-red-neuronal">Estructura de una Red Neuronal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-calculo-de-la-salida-de-una-neurona-artificial">Ejemplo Práctico: Cálculo de la Salida de una Neurona Artificial</a></li>
 </ul>
             </nav>
         </div>
@@ -492,111 +466,108 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-curso-de-redes-neuronales-profundas">
-<h1>Introducción al Curso de Redes Neuronales Profundas<a class="headerlink" href="#introduccion-al-curso-de-redes-neuronales-profundas" title="Link to this heading">#</a></h1>
-<div class="admonition-objetivo-del-curso admonition">
-<p class="admonition-title">Objetivo del Curso</p>
-<p>Este curso proporciona una comprensión profunda de las redes neuronales, desde sus fundamentos hasta sus aplicaciones avanzadas. Exploraremos cómo diseñar, entrenar e implementar redes neuronales utilizando herramientas modernas como TensorFlow y Keras.</p>
-</div>
-<section id="contenido-del-curso">
-<h2>Contenido del Curso<a class="headerlink" href="#contenido-del-curso" title="Link to this heading">#</a></h2>
-</section>
-<section id="unidad-1-introduccion-a-redes-neuronales">
-<h2><strong>Unidad 1: Introducción a Redes Neuronales</strong><a class="headerlink" href="#unidad-1-introduccion-a-redes-neuronales" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Conceptos básicos: Definición y aplicaciones.</p></li>
-<li><p>Perceptrón multicapa (MLP).</p></li>
-<li><p>Funciones de activación y capas ocultas.</p></li>
-<li><p>Comparación con modelos lineales y no lineales.</p></li>
-<li><p>Implementación en TensorFlow/Keras.</p></li>
-</ul>
-</section>
-<section id="unidad-2-regularizacion-en-redes-neuronales">
-<h2><strong>Unidad 2: Regularización en Redes Neuronales</strong><a class="headerlink" href="#unidad-2-regularizacion-en-redes-neuronales" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Sobreajuste y subajuste.</p></li>
-<li><p>Regularización L1 y L2.</p></li>
-<li><p>Dropout y Batch Normalization.</p></li>
-<li><p>Data augmentation.</p></li>
-<li><p>Ejemplo práctico en Keras.</p></li>
-</ul>
-</section>
-<section id="unidad-3-optimizacion-en-redes-profundas">
-<h2><strong>Unidad 3: Optimización en Redes Profundas</strong><a class="headerlink" href="#unidad-3-optimizacion-en-redes-profundas" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Descenso de gradiente y variantes (SGD, Adam, RMSprop).</p></li>
-<li><p>Backpropagation y cálculo del gradiente.</p></li>
-<li><p>Funciones de costo y ajuste de hiperparámetros.</p></li>
-<li><p>Problemas de optimización: desvanecimiento y explosión del gradiente.</p></li>
-</ul>
-</section>
-<section id="unidad-4-redes-convolucionales-cnns">
-<h2><strong>Unidad 4: Redes Convolucionales (CNNs)</strong><a class="headerlink" href="#unidad-4-redes-convolucionales-cnns" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Operaciones convolucionales y capas de pooling.</p></li>
-<li><p>Arquitecturas populares (LeNet, AlexNet, VGG, ResNet).</p></li>
-<li><p>Aplicaciones en visión por computadora.</p></li>
-<li><p>Implementación de una CNN en TensorFlow/Keras.</p></li>
-</ul>
-</section>
-<section id="unidad-5-redes-recurrentes-y-modelado-de-secuencias">
-<h2><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong><a class="headerlink" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>RNNs, LSTMs y GRUs.</p></li>
-<li><p>Aplicaciones en series temporales y NLP.</p></li>
-<li><p>Problemas de largo plazo: desvanecimiento del gradiente.</p></li>
-<li><p>Implementación de una RNN para clasificación de texto.</p></li>
-</ul>
-</section>
-<section id="unidad-6-modelos-de-representacion-y-autoencoders">
-<h2><strong>Unidad 6: Modelos de Representación y Autoencoders</strong><a class="headerlink" href="#unidad-6-modelos-de-representacion-y-autoencoders" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Redes autoencoder (AE) y variacionales (VAE).</p></li>
-<li><p>Aprendizaje de representaciones y embeddings.</p></li>
-<li><p>Aplicaciones en reducción de dimensionalidad y generación de datos.</p></li>
-<li><p>Implementación de un autoencoder en TensorFlow/Keras.</p></li>
-</ul>
-</section>
-<section id="unidad-7-metodos-probabilisticos-y-generativos">
-<h2><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong><a class="headerlink" href="#unidad-7-metodos-probabilisticos-y-generativos" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Modelos gráficos probabilísticos en deep learning.</p></li>
-<li><p>Métodos Monte Carlo para inferencia aproximada.</p></li>
-<li><p>Modelos generativos: GANs y VAEs.</p></li>
-<li><p>Implementación de una GAN en TensorFlow/Keras.</p></li>
-</ul>
-</section>
-<section id="unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning">
-<h2><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong><a class="headerlink" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Transfer learning y fine-tuning.</p></li>
-<li><p>Modelos Transformers y aplicaciones en NLP.</p></li>
-<li><p>Técnicas avanzadas de optimización e inferencia.</p></li>
-<li><p>Ética en Inteligencia Artificial.</p></li>
-<li><p>Implementación de un Transformer básico con Hugging Face.</p></li>
-</ul>
-</section>
-<section id="evaluacion">
-<h2>Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h2>
-<div class="admonition-criterios-de-evaluacion admonition">
-<p class="admonition-title">Criterios de Evaluación</p>
-<ul class="simple">
-<li><p><strong>Ejercicios prácticos</strong>: Implementación de redes neuronales en Keras.</p></li>
-<li><p><strong>Proyectos finales</strong>: Aplicaciones en visión por computadora, NLP o modelos generativos.</p></li>
-<li><p><strong>Análisis de papers</strong>: Avances recientes en deep learning.</p></li>
-</ul>
-</div>
-</section>
-<section id="bibliografia">
-<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-las-redes-neuronales">
+<h1>Introducción a las Redes Neuronales<a class="headerlink" href="#introduccion-a-las-redes-neuronales" title="Link to this heading">#</a></h1>
+<p>En esta sección exploraremos los fundamentos de las <strong>redes neuronales</strong>. Se estudiará la inspiración biológica detrás de estos modelos, se definirá qué es una neurona artificial y se describirá la estructura básica que conforma una red neuronal, incluyendo las capas de entrada, ocultas y salida.</p>
+<p>Esta introducción te proporcionará una base sólida para comprender los conceptos que se desarrollarán en secciones posteriores.</p>
+<section id="inspiracion-biologica-y-definicion-de-neuronas-artificiales">
+<h2>Inspiración Biológica y Definición de Neuronas Artificiales<a class="headerlink" href="#inspiracion-biologica-y-definicion-de-neuronas-artificiales" title="Link to this heading">#</a></h2>
+<p>El <strong>cerebro humano</strong> está compuesto por miles de millones de neuronas biológicas que se comunican a través de señales eléctricas y químicas. Cada neurona procesa la información que recibe y transmite señales a otras neuronas, formando redes complejas que dan lugar a procesos cognitivos como la percepción, la memoria y el aprendizaje.</p>
+<p>Las <strong>neuronas artificiales</strong> se inspiran en este modelo biológico, pero lo simplifican en una estructura matemática que puede ser implementada en una computadora. Una neurona artificial realiza las siguientes operaciones:</p>
 <ol class="arabic simple">
-<li><p>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press.</p></li>
-<li><p>Chollet, F. (2017). <em>Deep Learning with Python</em>. Manning Publications.</p></li>
-<li><p>Notas de clase generadas con una gran ayuda de ChatGPT.</p></li>
+<li><p><strong>Recepción de entradas:</strong> Recibe múltiples valores, cada uno representando una característica o dato.</p></li>
+<li><p><strong>Ponderación:</strong> A cada entrada se le asigna un <strong>peso</strong> que indica su relevancia en el proceso.</p></li>
+<li><p><strong>Suma y sesgo:</strong> Se realiza una combinación lineal de las entradas ponderadas y se añade un <strong>sesgo</strong> para ajustar el umbral de activación.</p></li>
+<li><p><strong>Función de activación:</strong> Se aplica una función (por ejemplo, la función sigmoide) para introducir no linealidad y generar la salida final.</p></li>
 </ol>
-</section>
-<div class="toctree-wrapper compound">
+<p>La operación se expresa matemáticamente como:</p>
+<div class="math notranslate nohighlight">
+\[
+z = \sum_{i=1}^{n} w_i \, x_i + b
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> son las entradas,</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span> son los pesos,</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> es el sesgo,</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> es el número de entradas.</p></li>
+</ul>
+<p>La salida final se obtiene al aplicar una función de activación <span class="math notranslate nohighlight">\(f(z)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+a = f(z)
+\]</div>
+<div class="danger docutils">
+<p>Es importante destacar que, aunque las neuronas artificiales se inspiran en el cerebro, son una <strong>simplificación</strong> extrema de la complejidad biológica. No representan la totalidad de los procesos neuronales reales.</p>
 </div>
+</section>
+<section id="estructura-de-una-red-neuronal">
+<h2>Estructura de una Red Neuronal<a class="headerlink" href="#estructura-de-una-red-neuronal" title="Link to this heading">#</a></h2>
+<p>Una red neuronal se compone de varias <strong>capas</strong> de neuronas conectadas entre sí. Cada capa cumple una función específica:</p>
+<ul>
+<li><p><strong>Capa de Entrada:</strong><br />
+Recibe los datos sin procesar. Cada neurona en esta capa corresponde a una característica o variable del conjunto de datos.</p></li>
+<li><p><strong>Capas Ocultas:</strong><br />
+Una o más capas intermedias que transforman la información recibida. En estas capas se extraen características y patrones complejos a través de combinaciones lineales y funciones de activación.</p>
+<div class="tip docutils">
+<p>La cantidad y el tamaño de las capas ocultas son hiperparámetros críticos. Experimenta con distintos números para encontrar la mejor arquitectura para tu problema.</p>
+</div>
+</li>
+<li><p><strong>Capa de Salida:</strong><br />
+Produce la predicción final. El número de neuronas y la función de activación de esta capa dependen del tipo de tarea (por ejemplo, clasificación, regresión, etc.).</p>
+<div class="note docutils">
+<p>Para clasificación binaria, se suele utilizar una única neurona con activación sigmoide. Para clasificación multiclase, se utiliza una capa con tantas neuronas como clases, junto con la función de activación softmax.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="ejemplo-practico-calculo-de-la-salida-de-una-neurona-artificial">
+<h2>Ejemplo Práctico: Cálculo de la Salida de una Neurona Artificial<a class="headerlink" href="#ejemplo-practico-calculo-de-la-salida-de-una-neurona-artificial" title="Link to this heading">#</a></h2>
+<p>A continuación, se muestra un ejemplo en Python que ilustra cómo se calcula la salida de una neurona artificial. Utilizaremos la <strong>función de activación sigmoide</strong>, la cual transforma el valor obtenido de la combinación lineal en un número entre 0 y 1.</p>
+<div class="danger docutils">
+<p>El ejemplo que sigue es una implementación simplificada y didáctica. En aplicaciones reales, se utilizan frameworks que optimizan y generalizan estos cálculos.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos NumPy para realizar operaciones numéricas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Definición de las entradas (por ejemplo, características de un dato)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+
+<span class="c1"># Definición de los pesos asociados a cada entrada</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">])</span>
+
+<span class="c1"># Definición del sesgo</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Cálculo de la combinación lineal: z = w.x + b</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valor de z (combinación lineal):&quot;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+<span class="c1"># Definición de la función de activación sigmoide</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1"># Cálculo de la salida de la neurona aplicando la función sigmoide</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Salida de la neurona (activación sigmoide):&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor de z (combinación lineal): 0.19
+Salida de la neurona (activación sigmoide): 0.5473576181430894
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las <strong>redes neuronales</strong> han transformado el campo del aprendizaje automático al permitir la modelación de relaciones altamente complejas en los datos. La <strong>inspiración biológica</strong> nos ayuda a visualizar cómo se estructura el procesamiento de la información en el cerebro, mientras que la <strong>definición matemática</strong> de una neurona artificial nos proporciona las herramientas para implementar estos modelos en la práctica.</p>
+<div class="tip docutils">
+<p>Experimenta modificando los valores de las entradas, los pesos y el sesgo en el ejemplo práctico. Observar cómo varía la salida de la neurona te permitirá comprender de forma más profunda el proceso de propagación en una red neuronal.</p>
+</div>
+<p>Esta sección sienta las bases para adentrarnos en temas más avanzados, como el entrenamiento de redes mediante gradiente descendente y la implementación de arquitecturas más complejas.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -629,12 +600,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
+    <a class="left-prev"
        href="redes_neuronales_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción al Perceptrón</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_modelo_neurona_funciones_activacion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introducción al Perceptrón</p>
+        <p class="prev-next-title">Modelo Matemático de la Neurona y Funciones de Activación</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -655,17 +635,9 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">Contenido del Curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-1-introduccion-a-redes-neuronales"><strong>Unidad 1: Introducción a Redes Neuronales</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-2-regularizacion-en-redes-neuronales"><strong>Unidad 2: Regularización en Redes Neuronales</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-3-optimizacion-en-redes-profundas"><strong>Unidad 3: Optimización en Redes Profundas</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-4-redes-convolucionales-cnns"><strong>Unidad 4: Redes Convolucionales (CNNs)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-5-redes-recurrentes-y-modelado-de-secuencias"><strong>Unidad 5: Redes Recurrentes y Modelado de Secuencias</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-6-modelos-de-representacion-y-autoencoders"><strong>Unidad 6: Modelos de Representación y Autoencoders</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-7-metodos-probabilisticos-y-generativos"><strong>Unidad 7: Métodos Probabilísticos y Generativos</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-8-aplicaciones-avanzadas-y-tendencias-en-deep-learning"><strong>Unidad 8: Aplicaciones Avanzadas y Tendencias en Deep Learning</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspiracion-biologica-y-definicion-de-neuronas-artificiales">Inspiración Biológica y Definición de Neuronas Artificiales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-una-red-neuronal">Estructura de una Red Neuronal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-calculo-de-la-salida-de-una-neurona-artificial">Ejemplo Práctico: Cálculo de la Salida de una Neurona Artificial</a></li>
 </ul>
   </nav></div>
 
