@@ -5,3 +5,6 @@ format: jb-book
 root: intro
 chapters:
 - file: redes_neuronales_1
+- file: 01_introduccion_redes_neuronales
+- file: 02_modelo_neurona_funciones_activacion
+- file: 03_algoritmo_perceptron_gradiente_descendente
